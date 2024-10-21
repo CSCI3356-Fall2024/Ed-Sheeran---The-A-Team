@@ -16,6 +16,9 @@ def profile_view(request):
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
+            print("Profile saved:", profile)  # Log the saved profile
+        else:
+            print("Form errors:", form.errors)
         #    image = form.cleaned_data["image"]
         #    school = form.cleaned_data["school"]
         #    year = form.cleaned_data["year"]
