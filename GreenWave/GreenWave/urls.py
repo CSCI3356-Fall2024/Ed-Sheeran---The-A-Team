@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 from pages.views import home_view
+from pages.views import profile_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name= 'home'),
     path('accounts/', include('allauth.urls')),
+    path("accounts/profile/", profile_view, name="profile")
 ]
