@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 
 class user_profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="userprofile", null=True)
-    image = models.ImageField()
+    image = models.ImageField(upload_to = 'profile_images/')
     school = models.CharField(max_length=200)
     year = models.IntegerField()
     major1 = models.CharField(max_length=200)
-    major2 = models.CharField(max_length=200)
+    major2 = models.CharField(max_length=200, blank = True, null = True)

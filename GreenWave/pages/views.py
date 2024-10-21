@@ -11,7 +11,7 @@ def home_view(request, *args, **kwargs):
 
 def profile_view(request):
     if request.method == 'POST':
-        form = profile_form(request.POST)
+        form = profile_form(request.POST, request.FILES)
         if form.is_valid():
             image = form.cleaned_data["image"]
             school = form.cleaned_data["school"]
@@ -22,4 +22,6 @@ def profile_view(request):
             t.save()
     else:
         form = profile_form()
+
+
     return render(request, "profile.html", {'form':form})
