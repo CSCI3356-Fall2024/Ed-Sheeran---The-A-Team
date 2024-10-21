@@ -13,13 +13,16 @@ def profile_view(request):
     if request.method == 'POST':
         form = profile_form(request.POST, request.FILES)
         if form.is_valid():
-            image = form.cleaned_data["image"]
-            school = form.cleaned_data["school"]
-            year = form.cleaned_data["year"]
-            major1 = form.cleaned_data["major1"]
-            major2 = form.cleaned_data["major2"]
-            t = user_profile(school=school, year=year, major1=major1, major2=major2 )
-            t.save()
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+        #    image = form.cleaned_data["image"]
+        #    school = form.cleaned_data["school"]
+        #    year = form.cleaned_data["year"]
+        #    major1 = form.cleaned_data["major1"]
+        #    major2 = form.cleaned_data["major2"]
+        #    t = user_profile(school=school, year=year, major1=major1, major2=major2 )
+        #    t.save()
     else:
         form = profile_form()
 
