@@ -3,4 +3,9 @@
 {%block content%}
 <h1>Hi, {{user.username}}. Set up your profile.</h1>
 
+<form method="POST" class="form-group">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">SAVE</button>
+</form>
 {%endblock%}
