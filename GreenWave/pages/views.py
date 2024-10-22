@@ -7,7 +7,12 @@ from .models import user_profile
 def home_view(request, *args, **kwargs):
     print(args,kwargs)
     print(request.user)
-    return render(request, "home.html", {})
+    if request.user.groups.filter(name='Supervisor').exists():
+        group_name = "Supervisor"
+    else:
+        group_name = "Regular User"
+
+    return render(request, 'home.html', {'group_name': group_name})
 
 def profile_view(request):
     user_profile_instance = user_profile.objects.filter(user=request.user).first()

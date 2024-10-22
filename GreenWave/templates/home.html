@@ -2,5 +2,11 @@
 
 {%block content%}
 <h1>GreenWave Home Page</h1>
-<p>This is a template</p>
-        {%endblock%}
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}!</p>
+    <p>You are a {{ group_name }}!</p>
+{% else %}
+    <p>LOG IN!!!.</p>
+{% endif %}
+
+{%endblock%}
