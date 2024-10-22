@@ -21,13 +21,15 @@ from django.conf.urls.static import static
 
 from pages.views import home_view
 from pages.views import profile_view
+from pages.views import product_detail_view, service_list_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name= 'home'),
     path('accounts/', include('allauth.urls')),
-    path("accounts/profile/", profile_view, name="profile")
-
+    path("accounts/profile/", profile_view, name="profile"),
+    path("services/", product_detail_view, name="service"),
+    path("service/", service_list_view, name="service_list"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
