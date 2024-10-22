@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4d6a5;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    color: #e9877e;
+}
+
+h2 {
+    color: #98bea5;
+}
+
+.service-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.services-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.service-item {
+    margin: 20px;
+    width: 300px; 
+}
+
+.service-box {
+    display: flex;
+    flex-direction: column;
+    background-color: #fcf4e2;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.service-image {
+    width: 100%;
+    height: 200px; 
+    background-color: #89bea5; 
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.service-content {
+    padding: 20px;
+}
+
+.service-name {
+    font-size: 1.5em;
+    color: #312825;
+    margin: 10px 0 5px 0;
+}
+
+.short-description {
+    font-size: 1.1em;
+    color: #e9877e;
+    margin: 0;
+}
+
+.service-detail-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.text-section {
+    flex: 1;
+    margin-right: 20px;
+    background-color: #fcf4e2;
+    padding: 20px;
+    border-radius: 12px;
+    width: 600px;
+    height: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-section {
+    flex: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #efcdd2; 
+    border-radius: 12px;
+    padding: 20px;
+    width: 400px;
+    height: auto;
+}
+
+.image-section p {
+    width: 100%;
+    height: 350px;
+    border: 1px dashed #312825;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #312825;
+    font-size: 1.5em;
+}

@@ -25,3 +25,9 @@ def profile_view(request):
 
 
     return render(request, "profile.html", {'form':form})
+
+def product_detail_view(request):
+	return render(request, "product_detail.html", {})
+
+def service_list_view(request):
+	return render(request, "service_list.html", {})
