@@ -1,13 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Navbar</a>
+<head>
+    <style>
+        .btn-group-custom {
+            margin-left: 15px; /* Adjust value as needed */
+        }
+        .btn-primary-color {
+          background-color: #efcdd2;
+          color: white;
+        }
+        .bg-color {
+          background-color: #fcf4e2;
+        }
+        }
+    </style>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-color">
+    <a href="/" class="btn btn-primary-color">Home</a>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+      <div class="btn-group btn-group-custom">
+        <a href="/accounts/profile/" class="btn btn-primary-color">Profile</a>
+        <a href="" class="btn btn-primary-color">Services</a>
+        <a href="" class="btn btn-primary-color">Rewards</a>
+      </div>
+        <!-- <div class="navbar-nav">
             <a class="nav-item nav-link active" href="#">Services <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="#">Rewards</a>
             <a class="nav-item nav-link" href="/accounts/profile">Profile</a>
-        </div>
+        </div> -->
     </div>
 </nav>
