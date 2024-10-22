@@ -19,7 +19,7 @@ def profile_view(request):
 
     if request.method == 'POST':
         if 'update' in request.POST:
-            form = profile_form(instance=user_profile_instance)  # Pre-fill the form for editing
+            form = profile_form(instance=user_profile_instance)
         else:
             form = profile_form(request.POST, request.FILES)
             if form.is_valid():
@@ -32,7 +32,7 @@ def profile_view(request):
                     profile = form.save(commit=False)
                     profile.user = request.user
                     profile.save()
-                return redirect('accounts/profile/')
+                return redirect('home')
 
     else:
         form = profile_form(instance=user_profile_instance)
