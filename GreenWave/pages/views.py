@@ -27,7 +27,7 @@ def profile_view(request):
                     profile = form.save(commit=False)
                     profile.user = request.user
                     profile.save()
-                return redirect('accounts/profile/')
+                
 
     else:
         form = profile_form(instance=user_profile_instance)
