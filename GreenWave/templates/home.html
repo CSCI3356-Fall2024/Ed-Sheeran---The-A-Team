@@ -1,12 +1,23 @@
+<head>
+    <style>
+        .btn-primary-color {
+          background-color: #efcdd2 !important;
+          color: white !important;
+        }
+    </style>
+</head>
+
 {% extends 'base.html'%}
 {% block title %}GreenWave Home{% endblock %}
+{% block navbar %}{% endblock %}
 {%block content%}
-<h2>Home</h2>
 {% if user.is_authenticated %}
+    {% include 'navbar.html' %}
+    <h2>Home</h2>
     <p>Welcome, {{ user.username }}!</p>
     <p>You are a {{ group_name }}!</p>
 {% else %}
-    <a href="/accounts/">LOG IN!!!.</p>
+    <a href="/accounts/" class="btn btn-primary-color">Log In/Create Account</a>
 {% endif %}
 
 {%endblock%}

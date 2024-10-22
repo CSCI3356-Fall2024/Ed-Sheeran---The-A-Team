@@ -20,7 +20,9 @@
     </head>
     <body>
         <h1 class = "page-title">GreenWave</h1>
-        {%include 'navbar.html'%}
+        {% block navbar %}
+                {% include 'navbar.html' %}
+            {% endblock %}
 
         {%block content%}
         replace me
