@@ -1,3 +1,20 @@
+<head>
+    <style>
+        .btn-group-custom {
+            margin-left: 15px; /* Adjust value as needed */
+        }
+        .background-color {
+          background-color: #efcdd2;
+        }
+        .container-color {
+          background-color: #f4d6a5;
+        }
+        .button-color {
+          background-color: #89bea5;
+        }
+    </style>
+</head>
+
 {% extends 'base.html' %}
 
 {% block title %}GreenWave Profile{% endblock %}
@@ -5,7 +22,7 @@
 {% block content %}
 <h1>Hi, {{ user.username }}.</h1>
 
-<div class="container">
+<div class="container container-color">
     {% if user_profile %}
         <h2>Your Profile</h2>
         <p>School: {{ user_profile.school }}</p>
@@ -21,7 +38,7 @@
         <form method="POST" action="{% url 'profile' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="hidden" name="update" value="true">  <!-- Hidden input -->
-            <button type="submit">Update Profile</button>
+            <button type="submit" class = "button-color">Update Profile</button>
         </form>
 
     {% else %}
@@ -49,7 +66,7 @@
                 {{ form.major2.label_tag }}
                 {{ form.major2 }}
             </div>
-            <button type="submit">SAVE</button>
+            <button type="submit" class = "button-color">SAVE</button>
         </form>
     {% endif %}
 
@@ -75,7 +92,7 @@
                 {{ form.major2.label_tag }}
                 {{ form.major2 }}
             </div>
-            <button type="submit">SAVE</button>
+            <button type="submit" class = "button-color">SAVE</button>
         </form>
     {% endif %}
 </div>
