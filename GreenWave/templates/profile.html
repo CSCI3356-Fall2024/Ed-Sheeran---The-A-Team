@@ -29,6 +29,11 @@
         </div>
         <button type="submit">SAVE</button>
     </form>
+    {% if user_profile %}
+        <p>Your profile has been updated.</p>
+    {% else %}
+        <p>Create your profile.</p>
+    {% endif %}
 </div>
     
 {%endblock%}
