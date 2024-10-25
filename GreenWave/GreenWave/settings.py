@@ -50,6 +50,8 @@ INSTALLED_APPS = [
 ]
 SITE_ID = 1
 
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': [

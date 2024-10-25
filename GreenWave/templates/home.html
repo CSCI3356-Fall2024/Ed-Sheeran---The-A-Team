@@ -1,10 +1,23 @@
 <head>
     <style>
         .btn-primary-color {
-          background-color: #efcdd2 !important;
-          color: white !important;
+            background-color: #efcdd2 !important;
+            color: white !important;
         }
-    </style>
+        .color-block {
+            background-color: #ffffff;
+            width: 100%;
+            height: 100%;
+            
+
+        }
+        .rectangle-container {
+            width: 500px;
+            height: 250px;
+            border: 2px solid #312825;
+            margin: 0 auto;
+        }
+            </style>
 </head>
 
 {% extends 'base.html'%}
@@ -17,7 +30,15 @@
     <p>Welcome, {{ user.username }}!</p>
     <p>You are a {{ group_name }}!</p>
 {% else %}
-    <a href="/accounts/" class="btn btn-primary-color">Log In/Create Account</a>
+<div class="text-center">
+<div class="rectangle-container">
+    <div class="color-block">
+        <h2> Welcome to GreenWave</h2>
+        <p> GreenWave is your on-campus sustainability services tracker. Please log in to existing account or create an account down below through your school email.</p>
+        <a href="/accounts/" class="btn btn-primary-color">Log In/Create Account</a>
+    </div>
+</div>
+</div>
 {% endif %}
 
 {%endblock%}
