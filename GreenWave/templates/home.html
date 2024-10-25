@@ -30,15 +30,9 @@
     <p>Welcome, {{ user.username }}!</p>
     <p>You are a {{ group_name }}!</p>
 {% else %}
-<div class="text-center">
-<div class="rectangle-container">
-    <div class="color-block">
-        <h2> Welcome to GreenWave</h2>
-        <p> GreenWave is your on-campus sustainability services tracker. Please log in to existing account or create an account down below through your school email.</p>
-        <a href="/accounts/" class="btn btn-primary-color">Log In/Create Account</a>
-    </div>
-</div>
-</div>
+{% block login %}
+                {% include 'login.html' %}
+            {% endblock %}
 {% endif %}
 
 {%endblock%}
