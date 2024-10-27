@@ -29,6 +29,7 @@
     <h2>Home</h2>
     <p>Welcome, {{ user.username }}!</p>
     <p>You are a {{ group_name }}!</p>
+    <a href="{% url 'logout' %}" class="btn btn-primary btn-primary-color">Logout</a>
 {% else %}
 {% block login %}
                 {% include 'login.html' %}

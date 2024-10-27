@@ -6,8 +6,13 @@
     <title>[SERVICE NAME] - Service Details</title>
     <link rel="stylesheet" href="../../static/service_styles.css">
 </head>
+
+{% extends 'base.html'%}
+{% block title %}GreenWave Rewards{% endblock %}
+{%block content%}
+
 <body>
-    <div class="service-detail-container">
+    <div class="service-detail-container"> <!-- Formatting is messed up but works, just need to fix!-->
         <div class="text-section">
             {% load static %}
             <h1>[SERVICE NAME]</h1>
@@ -24,4 +29,6 @@
         </div>
     </div>
 </body>
+
+{%endblock%}
 </html>

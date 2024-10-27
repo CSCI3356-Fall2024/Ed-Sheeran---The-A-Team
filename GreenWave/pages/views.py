@@ -45,3 +45,6 @@ def product_detail_view(request):
 
 def service_list_view(request):
 	return render(request, "service_list.html", {})
+
+def rewards(request):
+	return render(request, "rewards.html", {})
