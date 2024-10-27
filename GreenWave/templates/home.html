@@ -33,8 +33,8 @@
     <h2 style="text-align: center;">Home</h2>
     <p class="capitalize">Welcome, {{ user.username }}!</p>
     <p style="line-height: 0.5;">You are a {{ group_name }}!</p>
-    {%include 'landing.html'%}
-    {% else %}
+    <a href="{% url 'logout' %}" class="btn btn-primary btn-primary-color">Logout</a>
+{% else %}
 {% block login %}
                 {% include 'login.html' %}
             {% endblock %}

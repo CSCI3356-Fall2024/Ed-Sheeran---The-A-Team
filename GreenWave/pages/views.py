@@ -14,6 +14,19 @@ def home_view(request, *args, **kwargs):
 
     return render(request, 'home.html', {'group_name': group_name})
 
+def campaign_view(request):
+    if request.user.groups.filter(name='Supervisor').exists():
+        return render(request, 'campaigns.html', {})
+    else:
+         return redirect('/')
+
+def navbar_view(request):
+    if request.user.groups.filter(name='Supervisor').exists():
+        group_name = "Supervisor"
+    else:
+        group_name = "Regular User"
+    return render(request, 'navbar.html', {'group_name': group_name})
+
 def profile_view(request):
     user_profile_instance = user_profile.objects.filter(user=request.user).first()
 
@@ -45,3 +58,6 @@ def product_detail_view(request):
 
 def service_list_view(request):
 	return render(request, "service_list.html", {})
+
+def rewards(request):
+	return render(request, "rewards.html", {})
