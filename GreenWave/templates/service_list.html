@@ -1,47 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Green Services</title>
     <link rel="stylesheet" href="../../static/service_styles.css">
 </head>
-<body>
+
+{% extends 'base.html' %}
+
+{% block title %}GreenWave Services{% endblock %}
+
+{% block content %}
+
+<div>
 	<div>
-		<div>
-	    	<h1>Green Services</h1>
-		</div>
-	    <div class="service-container">
-	        <ul class="services-list">
-	        	<div>
-		            <li class="service-item">
-		                <div class="service-box">
-		                    <div class="service-image">
-		                        <p> [PICTURE] </p>
-		                    </div>
-		                    <div class="service-content">
-		                        <span class="service-name">[SERVICE]</span>
-		                        <p class="short-description">[SHORT_DESC]</p>
-		                    </div>
-		                </div>
-		            </li>
-	        	</div>
-	        	<div>
-		            <li class="service-item">
-		                <div class="service-box">
-		                    <div class="service-image">
-		                        <p> [PICTURE] </p>
-		                    </div>
-		                    <div class="service-content">
-		                        <span class="service-name">[SERVICE]</span>
-		                        <p class="short-description">[SHORT_DESC]</p>
-		                    </div>
-		                </div>
-		            </li>
-	        	</div>
-	            <!-- add more services here -->
-	        </ul>
-	    </div>
+		<h1>Green Services</h1>
 	</div>
-</body>
-</html>
+	<div class="service-container">
+		<ul class="services-list">
+			<div>
+				<li class="service-item">
+					<div class="service-box">
+						<div class="service-image">
+							<p> [PICTURE] </p>
+						</div>
+						<div class="service-content">
+							<span class="service-name">[SERVICE]</span>
+							<p class="short-description">[SHORT_DESC]</p>
+						</div>
+					</div>
+				</li>
+			</div>
+			<div>
+				<li class="service-item">
+					<div class="service-box">
+						<div class="service-image">
+							<p> [PICTURE] </p>
+						</div>
+						<div class="service-content">
+							<span class="service-name">[SERVICE]</span>
+							<p class="short-description">[SHORT_DESC]</p>
+						</div>
+					</div>
+				</li>
+			</div>
+			<!-- add more services here -->
+		</ul>
+	</div>
+</div>
+{% endblock %}

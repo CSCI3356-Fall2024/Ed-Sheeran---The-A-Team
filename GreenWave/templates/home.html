@@ -1,3 +1,5 @@
+{% extends 'base.html'%}
+
 <head>
     <style>
         .btn-primary-color {
@@ -24,7 +26,6 @@
             </style>
 </head>
 
-{% extends 'base.html'%}
 {% block title %}GreenWave Home{% endblock %}
 {% block navbar %}{% endblock %}
 {%block content%}
@@ -34,10 +35,46 @@
     <p class="capitalize">Welcome, {{ user.username }}!</p>
     <p style="line-height: 0.5;">You are a {{ group_name }}!</p>
     <a href="{% url 'logout' %}" class="btn btn-primary btn-primary-color">Logout</a>
+
+    <div> <!--Big box around both-->
+        <!--Campaigns-->
+        <div class="rectangle-container">
+            <h3>Current Campaigns</h3>
+            {% if campaigns %}
+                <ul>
+                    {% for campaign in campaigns %}
+                        <li>
+                            <h1>{{ campaign.name }}</h1><br>
+                            Start Date: {{ campaign.start_date }}<br>
+                            End Date: {{ campaign.end_date }}<br>
+                            Points: {{ campaign.points }}<br>
+                            Description: {{ campaign.description }}<br>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No current campaigns available.</p>
+            {% endif %}
+        </div>
+
+        <!--Leaderboard-->
+        <div class="rectangle-container" style="margin-top: 20px;">
+            <h3>Leaderboard</h3>
+            {% if leaderboard %}
+                <ol>
+                    {% for entry in leaderboard %}
+                        <li>{{ entry.username }}: {{ entry.points }} points</li>
+                    {% endfor %}
+                </ol>
+            {% else %}
+                <p>No leaderboard entries available.</p>
+                <p>Still developing but it will be here.</p>
+            {% endif %}
+        </div>
+    </div>
 {% else %}
 {% block login %}
                 {% include 'login.html' %}
             {% endblock %}
 {% endif %}
-
 {%endblock%}
