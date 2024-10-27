@@ -17,6 +17,10 @@
             border: 2px solid #312825;
             margin: 0 auto;
         }
+
+        p.capitalize{
+            text-transform: capitalize;
+        }
             </style>
 </head>
 
@@ -26,10 +30,11 @@
 {%block content%}
 {% if user.is_authenticated %}
     {% include 'navbar.html' %}
-    <h2>Home</h2>
-    <p>Welcome, {{ user.username }}!</p>
-    <p>You are a {{ group_name }}!</p>
-{% else %}
+    <h2 style="text-align: center;">Home</h2>
+    <p class="capitalize">Welcome, {{ user.username }}!</p>
+    <p style="line-height: 0.5;">You are a {{ group_name }}!</p>
+    {%include 'landing.html'%}
+    {% else %}
 {% block login %}
                 {% include 'login.html' %}
             {% endblock %}
