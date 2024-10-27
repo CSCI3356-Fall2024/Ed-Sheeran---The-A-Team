@@ -23,6 +23,9 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="btn-group btn-group-custom">
         <a href="/accounts/profile/" class="btn btn-primary-color">Profile</a>
+        {% if group_name == 'Supervisor' %}
+          <a href="/campaigns" class="btn btn-primary-color">Campaigns</a>
+        {% endif %}
         <a href="/services" class="btn btn-primary-color">Services</a>
         <a href="/rewards" class="btn btn-primary-color">Rewards</a>
       </div>
