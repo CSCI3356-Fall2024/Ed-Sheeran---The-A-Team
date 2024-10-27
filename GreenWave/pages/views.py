@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import profile_form
-from .models import user_profile
+from .forms import profile_form, campaign_form
+from .models import user_profile, campaign
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
@@ -16,7 +16,14 @@ def home_view(request, *args, **kwargs):
 
 def campaign_view(request):
     if request.user.groups.filter(name='Supervisor').exists():
-        return render(request, 'campaigns.html', {})
+        if request.method == 'POST':
+            form = campaign_form(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('home')
+        else:
+             form = campaign_form()
+        return render(request, 'campaigns.html', {'form': form})
     else:
          return redirect('/')
 

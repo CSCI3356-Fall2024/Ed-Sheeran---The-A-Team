@@ -1,5 +1,6 @@
 from django import forms
 from .models import user_profile
+from .models import campaign
 
 class profile_form(forms.ModelForm):
     YEAR_CHOICES = [(2025, '2025'),(2026, '2026'),(2027, '2027'),(2028, '2028')]
@@ -14,3 +15,7 @@ class profile_form(forms.ModelForm):
         #    'major1': forms.Select(attrs={'class': 'form-control'}),
         #    'major2': forms.Select(attrs={'class': 'form-control'})
         #}
+class campaign_form(forms.ModelForm):
+    class Meta:
+        model = campaign
+        fields = ["name", "start_date", "end_date", "points", "validation", "description"]

@@ -9,3 +9,11 @@ class user_profile(models.Model):
     year = models.IntegerField()
     major1 = models.CharField(max_length=200)
     major2 = models.CharField(max_length=200, blank = True, null = True)
+
+class campaign(models.Model):
+    name = models.CharField(max_length=200)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    points = models.IntegerField()
+    validation = models.CharField(max_length=200)
+    description = models.TextField()
