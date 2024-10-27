@@ -14,6 +14,9 @@ def home_view(request, *args, **kwargs):
 
     return render(request, 'home.html', {'group_name': group_name})
 
+def campaign_view(request):
+    return render(request, 'campaigns.html', {})
+
 def profile_view(request):
     user_profile_instance = user_profile.objects.filter(user=request.user).first()
 
