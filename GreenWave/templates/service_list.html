@@ -1,20 +1,14 @@
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Green Services</title>
     <link rel="stylesheet" href="../../static/service_styles.css">
 </head>
-
-{% extends 'base.html' %}
-
-{% block title %}GreenWave Services{% endblock %}
-
-{% block content %}
-
 <div>
-	<div>
-		<h1>Green Services</h1>
-	</div>
+	{% extends 'base.html' %}
+
+	{% block title %}GreenWave Services{% endblock %}
+
+	{% block content %}
+
 	<div class="service-container">
 		<ul class="services-list">
 			<div>
@@ -45,6 +39,6 @@
 			</div>
 			<!-- add more services here -->
 		</ul>
+	{% endblock %}
 	</div>
 </div>
-{% endblock %}

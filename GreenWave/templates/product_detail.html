@@ -6,11 +6,10 @@
     <link rel="stylesheet" href="../../static/service_styles.css">
 </head>
 
-{% extends 'base.html'%}
-{% block title %}GreenWave Rewards{% endblock %}
-{%block content%}
-
 <div class="service-detail-container"> <!-- Formatting is messed up but works, just need to fix!-->
+    {% extends 'base.html'%}
+    {% block title %}GreenWave Rewards{% endblock %}
+    {%block content%}
     <div class="text-section">
         {% load static %}
         <h1>[SERVICE NAME]</h1>
@@ -25,6 +24,5 @@
     <div class="image-section">
         <p>[IMAGE]</p> <!-- placeholder for the image -->
     </div>
+    {%endblock%}
 </div>
-
-{%endblock%}

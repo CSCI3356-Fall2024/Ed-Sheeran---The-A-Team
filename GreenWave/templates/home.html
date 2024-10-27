@@ -1,29 +1,7 @@
 {% extends 'base.html'%}
 
 <head>
-    <style>
-        .btn-primary-color {
-            background-color: #efcdd2 !important;
-            color: white !important;
-        }
-        .color-block {
-            background-color: #ffffff;
-            width: 100%;
-            height: 100%;
-            
-
-        }
-        .rectangle-container {
-            width: 500px;
-            height: 250px;
-            border: 2px solid #312825;
-            margin: 0 auto;
-        }
-
-        p.capitalize{
-            text-transform: capitalize;
-        }
-            </style>
+    <link rel="stylesheet" href="../../static/home.css">
 </head>
 
 {% block title %}GreenWave Home{% endblock %}
@@ -31,12 +9,26 @@
 {%block content%}
 {% if user.is_authenticated %}
     {% include 'navbar.html' %}
-    <h2 style="text-align: center;">Home</h2>
-    <p class="capitalize">Welcome, {{ user.username }}!</p>
-    <p style="line-height: 0.5;">You are a {{ group_name }}!</p>
-    <a href="{% url 'logout' %}" class="btn btn-primary btn-primary-color">Logout</a>
+    <div class="container"> <!--Big box around both-->
+        <h2 style="text-align: center;">Home</h2>
+        <p class="capitalize">Welcome, {{ user.username }}!</p>
+        <p style="line-height: 0.5;">You are a {{ group_name }}!</p>
+        <a href="{% url 'logout' %}" class="btn btn-primary btn-primary-color">Logout</a>
+        <!--Leaderboard-->
+        <div class="rectangle-container">
+            <h3>Leaderboard</h3>
+            {% if leaderboard %}
+                <ol>
+                    {% for entry in leaderboard %}
+                        <li>{{ entry.username }}: {{ entry.points }} points</li>
+                    {% endfor %}
+                </ol>
+            {% else %}
+                <p>No leaderboard entries available.</p>
+                <p>Still developing but it will be here.</p>
+            {% endif %}
+        </div>
 
-    <div> <!--Big box around both-->
         <!--Campaigns-->
         <div class="rectangle-container">
             <h3>Current Campaigns</h3>
@@ -54,21 +46,6 @@
                 </ul>
             {% else %}
                 <p>No current campaigns available.</p>
-            {% endif %}
-        </div>
-
-        <!--Leaderboard-->
-        <div class="rectangle-container" style="margin-top: 20px;">
-            <h3>Leaderboard</h3>
-            {% if leaderboard %}
-                <ol>
-                    {% for entry in leaderboard %}
-                        <li>{{ entry.username }}: {{ entry.points }} points</li>
-                    {% endfor %}
-                </ol>
-            {% else %}
-                <p>No leaderboard entries available.</p>
-                <p>Still developing but it will be here.</p>
             {% endif %}
         </div>
     </div>

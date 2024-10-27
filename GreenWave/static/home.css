@@ -1,0 +1,25 @@
+body {
+    background-color: #fcf4e2;
+    font-family: Arial, sans-serif;
+}
+
+.btn-primary-color {
+    background-color: #efcdd2;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.rectangle-container {
+    width: 35%;
+    border: 2px solid #312825;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
