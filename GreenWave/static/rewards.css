@@ -1,0 +1,29 @@
+rewards-container {
+    background-color: #f5e0b7;
+    padding: 20px;
+    border: 1px solid #ccc;
+    max-width: 600px;
+    margin: auto;
+}
+
+.rewards-header {
+    text-align: center;
+    font-weight: bold;
+    color: #3a332b;
+}
+
+.progress-bar-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.points-text {
+    font-size: 18px;
+}
+
+.transaction-history {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fdf6e3;
+    border: 1px solid #ccc;
+}
