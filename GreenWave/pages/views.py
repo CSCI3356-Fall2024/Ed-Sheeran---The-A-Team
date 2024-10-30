@@ -16,17 +16,19 @@ def home_view(request, *args, **kwargs):
 
 def campaign_view(request):
     if request.user.groups.filter(name='Supervisor').exists():
+        group_name = "Supervisor"
         if request.method == 'POST':
             form = campaign_form(request.POST)
             if form.is_valid():
                 form.save()
                 return redirect('home')
         else:
-             form = campaign_form()
-        return render(request, 'campaigns.html', {'form': form})
+             form = campaign_form(request.POST)
+        return render(request, 'campaigns.html', {'form': form, 'group_name': group_name})
     else:
+         group_name = "Regular User"
          return redirect('/')
-    
+
 def service_detail(request, service_id):
     serv = service.objects.get(id = service_id)
     return render(request, 'service_detail.html', {'service': serv})
@@ -39,12 +41,16 @@ def service_create(request):
             return redirect('service_list') #where do we want to redirect, can I make it unique per service by an ID or new page?
     else:
         form = service_form()
-    
+
     return render(request, 'service_form.html', {'form': form})
 
 def service_list(request):
+    if request.user.groups.filter(name='Supervisor').exists():
+        group_name = "Supervisor"
+    else:
+        group_name = "Regular User"
     serv = service.objects.all()  # Get all service instances
-    return render(request, 'service_list.html', {'services': service})
+    return render(request, 'service_list.html', {'services': service, 'group_name': group_name})
 
 def navbar_view(request):
     if request.user.groups.filter(name='Supervisor').exists():
@@ -55,7 +61,10 @@ def navbar_view(request):
 
 def profile_view(request):
     user_profile_instance = user_profile.objects.filter(user=request.user).first()
-
+    if request.user.groups.filter(name='Supervisor').exists():
+        group_name = "Supervisor"
+    else:
+        group_name = "Regular User"
     if request.method == 'POST':
         if 'update' in request.POST:
             form = profile_form(instance=user_profile_instance)
@@ -77,13 +86,25 @@ def profile_view(request):
         form = profile_form(instance=user_profile_instance)
 
 
-    return render(request, "profile.html", {'form':form, 'user_profile': user_profile_instance})
+    return render(request, "profile.html", {'form':form, 'user_profile': user_profile_instance, 'group_name': group_name})
 
 def service_detail_view(request):
-	return render(request, "service_detail.html", {})
+    if request.user.groups.filter(name='Supervisor').exists():
+        group_name = "Supervisor"
+    else:
+        group_name = "Regular User"
+    return render(request, "service_detail.html", {'group_name': group_name})
 
 def service_list_view(request):
-	return render(request, "service_list.html", {})
+    if request.user.groups.filter(name='Supervisor').exists():
+        group_name = "Supervisor"
+    else:
+        group_name = "Regular User"
+    return render(request, "service_list.html", {'group_name': group_name})
 
 def rewards(request):
-	return render(request, "rewards.html", {})
+    if request.user.groups.filter(name='Supervisor').exists():
+        group_name = "Supervisor"
+    else:
+        group_name = "Regular User"
+    return render(request, "rewards.html", {'group_name': group_name})
