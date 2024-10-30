@@ -21,6 +21,15 @@ class profile_form(forms.ModelForm):
 class campaign_form(forms.ModelForm):
     VALIDATION_CHOICES = [('Choice 1', 'Choice 1'), ('Choice 2', 'Choice 2')]
     validation = forms.ChoiceField(choices = VALIDATION_CHOICES)
+    
+    start_date = forms.DateField(
+        widget=forms.DateInput(attrs={'placeholder': 'MM/DD/YYYY'})
+    )
+
+    end_date = forms.DateField(
+        widget=forms.DateInput(attrs={'placeholder': 'MM/DD/YYYY'})
+    )
+    
     class Meta:
         model = campaign
         fields = ["name", "start_date", "end_date", "points", "validation", "description"]
