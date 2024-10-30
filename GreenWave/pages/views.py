@@ -42,6 +42,10 @@ def service_create(request):
     
     return render(request, 'service_form.html', {'form': form})
 
+def service_list(request):
+    serv = service.objects.all()  # Get all service instances
+    return render(request, 'service_list.html', {'services': service})
+
 def navbar_view(request):
     if request.user.groups.filter(name='Supervisor').exists():
         group_name = "Supervisor"

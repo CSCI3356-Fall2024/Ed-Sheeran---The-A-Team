@@ -1,13 +1,38 @@
 <head>
-    <title>Green Services</title>
     <link rel="stylesheet" href="../../static/service_styles.css">
 </head>
+
 <div>
 	{% extends 'base.html' %}
 
 	{% block title %}GreenWave Services{% endblock %}
 
 	{% block content %}
+
+	<!--This code below SHOULD work for looping through, just need to create the services
+
+	Also, it does NOT like the block comments for the website, so don't delete them when putting into production
+	<div class="service-container">
+		<ul class="services-list">
+			{% for service in services %} Loops through each service I think, need to test? Stack said so at least
+			<li class="service-item">
+				<div class="service-box">
+					<div class="service-image">
+						{% if service.image %}
+							<img src="{{ service.image.url }}" alt="{{ service.name }}">
+						{% else %}
+							<p>No image available</p>
+						{% endif %}
+					</div>
+					<div class="service-content">
+						<a href="{% url 'service_detail' service.id %}" class="service-name">{{ service.name }}</a>
+						<p class="short-description">{{ service.desc }}</p> Hoping this pathing idea works, ChatGPT helped here
+					</div>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>-->
 
 	<div class="service-container">
 		<ul class="services-list">
@@ -37,8 +62,9 @@
 					</div>
 				</li>
 			</div>
-			<!-- add more services here -->
 		</ul>
+
+
 	{% endblock %}
 	</div>
 </div>

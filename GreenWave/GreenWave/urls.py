@@ -33,7 +33,7 @@ urlpatterns = [
     path("accounts/profile/", profile_view, name="profile"),
     path("service/", service_detail_view, name="service"),
     path("services/", service_list_view, name="service_list"),
-    path("", LogoutView.as_view(), name="logout"), #do we want a logout page or what? Change where it redirect here and in settings.py "LOGOUT_REDIRECT_URL"
+    path("", LogoutView.as_view(), name="logout"), #I have no idea how to do the logout, neff maybe you can because you did the login?
     path("rewards/", rewards, name="rewards"),
     path("campaigns/", campaign_view, name="campaigns")
 ]
