@@ -1,0 +1,30 @@
+
+<head>
+    <link rel="stylesheet" href="../../static/service_styles.css">
+</head>
+
+<div>
+    {% extends 'base.html' %}
+    {% block title %}temp {{ service.name }}{% endblock %}
+    {% block content %}
+    <div class="service-detail-container">
+        <div class="text-section">
+            <h1>temp {{ service.name }}</h1>
+            <p>temp {{ service.desc }}</p>
+            <h2>Reward Points</h2>
+            <p>temp {{ service.points_per_use }}</p>
+            <h2>How to Use</h2>
+            <p>temp {{ service.how_to_use }}</p>
+            <h2>Why to Use</h2>
+            <p>temp {{ service.why_to_use }}</p>
+        </div>
+        <div class="image-section">
+            {% if service.image %}
+                <img src="{{ service.image.url }}" alt="{{ service.name }}">
+            {% else %}
+                <p>No image available</p>
+            {% endif %}
+        </div>
+    </div>
+    {% endblock %}
+</div>

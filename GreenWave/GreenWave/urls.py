@@ -24,14 +24,14 @@ from django.contrib.auth.views import LogoutView
 from pages.views import home_view
 from pages.views import campaign_view
 from pages.views import profile_view, rewards
-from pages.views import product_detail_view, service_list_view
+from pages.views import service_detail_view, service_list_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name= 'home'),
     path('accounts/', include('allauth.urls')),
     path("accounts/profile/", profile_view, name="profile"),
-    path("service/", product_detail_view, name="service"),
+    path("service/", service_detail_view, name="service"),
     path("services/", service_list_view, name="service_list"),
     path("", LogoutView.as_view(), name="logout"), #do we want a logout page or what? Change where it redirect here and in settings.py "LOGOUT_REDIRECT_URL"
     path("rewards/", rewards, name="rewards"),

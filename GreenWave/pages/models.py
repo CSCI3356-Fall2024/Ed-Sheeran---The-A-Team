@@ -17,3 +17,14 @@ class campaign(models.Model):
     points = models.IntegerField()
     validation = models.CharField(max_length=200)
     description = models.TextField()
+
+class service(models.Model):
+    name = models.CharField(max_length = 20)
+    image = models.ImageField(upload_to='service_images/')
+    desc = models.CharField(max_length = 100)
+    how_to_use = models.CharField(max_length = 100)
+    why_to_use = models.CharField(max_length = 100)
+    points_per_use = models.IntegerField()
+
+    def __str__(self):
+        return self.name

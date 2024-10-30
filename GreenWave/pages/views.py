@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import profile_form, campaign_form
-from .models import user_profile, campaign
+from .forms import profile_form, campaign_form, service_form
+from .models import user_profile, campaign, service
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
@@ -26,6 +26,21 @@ def campaign_view(request):
         return render(request, 'campaigns.html', {'form': form})
     else:
          return redirect('/')
+    
+def service_detail(request, service_id):
+    serv = service.objects.get(id = service_id)
+    return render(request, 'service_detail.html', {'service': serv})
+
+def service_create(request):
+    if request.method == 'POST':
+        form = service_form(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('service_list') #where do we want to redirect, can I make it unique per service by an ID or new page?
+    else:
+        form = service_form()
+    
+    return render(request, 'service_form.html', {'form': form})
 
 def navbar_view(request):
     if request.user.groups.filter(name='Supervisor').exists():
@@ -60,8 +75,8 @@ def profile_view(request):
 
     return render(request, "profile.html", {'form':form, 'user_profile': user_profile_instance})
 
-def product_detail_view(request):
-	return render(request, "product_detail.html", {})
+def service_detail_view(request):
+	return render(request, "service_detail.html", {})
 
 def service_list_view(request):
 	return render(request, "service_list.html", {})
