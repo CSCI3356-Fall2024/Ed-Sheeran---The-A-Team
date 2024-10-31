@@ -1,4 +1,4 @@
-body {
+body .text-center{
     background-color: #fcf4e2;
     font-family: Arial, sans-serif;
 }
@@ -22,4 +22,8 @@ body {
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
