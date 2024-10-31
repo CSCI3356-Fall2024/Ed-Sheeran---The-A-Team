@@ -12,35 +12,39 @@
 <div class="form">
     <form method="POST" class="container" enctype="multipart/form-data">
         {% csrf_token %}
-            <div class="block">
-                <div class="form-group">
-                    {{ form.name.label_tag }}
-                    {{ form.name }}
+            <div class="fields">
+                <div class="block">
+                    <div class="form-group">
+                        {{ form.name.label_tag }}
+                        {{ form.name }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.start_date.label_tag }}
+                        {{ form.start_date }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.end_date.label_tag }}
+                        {{ form.end_date }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.points.label_tag }}
+                        {{ form.points }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.validation.label_tag }}
+                        {{ form.validation }}
+                    </div>
                 </div>
-                <div class="form-group">
-                    {{ form.start_date.label_tag }}
-                    {{ form.start_date }}
-                </div>
-                <div class="form-group">
-                    {{ form.end_date.label_tag }}
-                    {{ form.end_date }}
-                </div>
-                <div class="form-group">
-                    {{ form.points.label_tag }}
-                    {{ form.points }}
-                </div>
-                <div class="form-group">
-                    {{ form.validation.label_tag }}
-                    {{ form.validation }}
+                <div class="block">
+                    <div class="form-group">
+                        {{ form.description.label_tag }}
+                        {{ form.description }}
+                    </div>
                 </div>
             </div>
-            <div class="block">
-                <div class="form-group">
-                    {{ form.description.label_tag }}
-                    {{ form.description }}
-                </div>
+            <div class="submit-form">
+                <button type="submit" class="button-color">SAVE</button>
             </div>
-        <button type="submit" class = "button-color">SAVE</button>
     </form>
 </div>
 
