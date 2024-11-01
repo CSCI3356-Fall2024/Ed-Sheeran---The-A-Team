@@ -7,12 +7,18 @@ from .models import user_profile, campaign, service
 def home_view(request, *args, **kwargs):
     print(args,kwargs)
     print(request.user)
+    campaigns = campaign.objects.all()
     if request.user.groups.filter(name='Supervisor').exists():
         group_name = "Supervisor"
     else:
         group_name = "Regular User"
+    
+    context = {
+        'group_name': group_name,
+        'campaigns': campaigns,
+    }
 
-    return render(request, 'home.html', {'group_name': group_name})
+    return render(request, 'home.html', context)
 
 def campaign_view(request):
     if request.user.groups.filter(name='Supervisor').exists():
