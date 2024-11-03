@@ -31,7 +31,7 @@ urlpatterns = [
     path('', home_view, name= 'home'),
     path('accounts/', include('allauth.urls')),
     path("accounts/profile/", profile_view, name="profile"),
-    path("service/", service_detail_view, name="service"),
+    path("service/<int:id>//", service_detail_view, name="service_detail"),
     path("services/", service_list_view, name="service_list"),
     path("", LogoutView.as_view(), name="logout"), #I have no idea how to do the logout, neff maybe you can because you did the login?
     path("rewards/", rewards, name="rewards"),

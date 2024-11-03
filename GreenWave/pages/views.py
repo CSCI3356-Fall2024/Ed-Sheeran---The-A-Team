@@ -1,7 +1,8 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import profile_form, campaign_form, service_form
 from .models import user_profile, campaign, service
+from django.utils import timezone
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
@@ -14,7 +15,12 @@ def home_view(request, *args, **kwargs):
     else:
         group_name = "Regular User"
 
-    return render(request, 'home.html', {'group_name': group_name})
+    context = {
+        'group_name': group_name,
+        'campaigns': campaigns,
+    }
+
+    return render(request, 'home.html', context)
 
 def campaign_view(request):
     if request.user.groups.filter(name='Supervisor').exists():
@@ -90,19 +96,31 @@ def profile_view(request):
 
     return render(request, "profile.html", {'form':form, 'user_profile': user_profile_instance, 'group_name': group_name})
 
-def service_detail_view(request):
+def service_detail_view(request, id):
     if request.user.groups.filter(name='Supervisor').exists():
         group_name = "Supervisor"
     else:
         group_name = "Regular User"
-    return render(request, "service_detail.html", {'group_name': group_name})
+
+    service_single = get_object_or_404(service, id=id)
+    context = {
+        'service': service_single,
+        'group_name': group_name,
+    }
+    return render(request, "service_detail.html", context)
 
 def service_list_view(request):
     if request.user.groups.filter(name='Supervisor').exists():
         group_name = "Supervisor"
     else:
         group_name = "Regular User"
-    return render(request, "service_list.html", {'group_name': group_name})
+
+    services = service.objects.all()
+    context = {
+        'services': services,
+        'group_name': group_name,
+    }
+    return render(request, "service_list.html", context)
 
 def rewards(request):
     if request.user.groups.filter(name='Supervisor').exists():

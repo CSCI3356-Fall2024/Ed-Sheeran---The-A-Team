@@ -9,62 +9,29 @@
 
 	{% block content %}
 
-	<!--This code below SHOULD work for looping through, just need to create the services
-
-	Also, it does NOT like the block comments for the website, so don't delete them when putting into production
+	<!--This code below SHOULD work for looping through, just need to create more services-->
 	<div class="service-container">
 		<ul class="services-list">
-			{% for service in services %} Loops through each service I think, need to test? Stack said so at least
+			{% for service in services %}
 			<li class="service-item">
-				<div class="service-box">
-					<div class="service-image">
-						{% if service.image %}
-							<img src="{{ service.image.url }}" alt="{{ service.name }}">
-						{% else %}
-							<p>No image available</p>
-						{% endif %}
+				<a href="{% url 'service_detail' service.id %}" class="service-box">  <!-- Would like to get rid of underlines, add shadow when hovered over -->
+					<div class="service-box">
+						<div class="service-image">
+							{% if service.image %}
+								<img src="{{ service.image.url }}" alt="{{ service.name }}">
+							{% else %}
+								<p>No image available</p>
+							{% endif %}
+						</div>
+						<div class="service-content">
+							<p class="service-name">{{ service.name }}</p>
+							<p class="short-description">{{ service.desc }}</p>
+						</div>
 					</div>
-					<div class="service-content">
-						<a href="{% url 'service_detail' service.id %}" class="service-name">{{ service.name }}</a>
-						<p class="short-description">{{ service.desc }}</p> Hoping this pathing idea works, ChatGPT helped here
-					</div>
-				</div>
+				</a>
 			</li>
 			{% endfor %}
 		</ul>
-	</div>-->
-
-	<div class="service-container">
-		<ul class="services-list">
-			<div>
-				<li class="service-item">
-					<div class="service-box">
-						<div class="service-image">
-							<p> [PICTURE] </p>
-						</div>
-						<div class="service-content">
-							<span class="service-name">[SERVICE]</span>
-							<p class="short-description">[SHORT_DESC]</p>
-						</div>
-					</div>
-				</li>
-			</div>
-			<div>
-				<li class="service-item">
-					<div class="service-box">
-						<div class="service-image">
-							<p> [PICTURE] </p>
-						</div>
-						<div class="service-content">
-							<span class="service-name">[SERVICE]</span>
-							<p class="short-description">[SHORT_DESC]</p>
-						</div>
-					</div>
-				</li>
-			</div>
-		</ul>
-
-
 	{% endblock %}
 	</div>
 </div>
