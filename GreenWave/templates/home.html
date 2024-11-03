@@ -1,8 +1,8 @@
-{% extends 'base.html'%}
-
 <head>
     <!-- <link rel="stylesheet" href="../../static/home.css"> -->
 </head>
+
+{% extends 'base.html'%}
 
 <div>
     {% block title %}GreenWave Home{% endblock %}
@@ -13,10 +13,10 @@
         <h2 style="text-align: center;">Home</h2>
         <p class="capitalize">Welcome, {{ user.username }}!</p>
         <p style="line-height: 0.5;">You are a {{ group_name }}!</p>
-        <div class="container"> <!--Big box around both-->
+        <div class="container-2"> <!--Big box around both-->
             <!--Leaderboard-->
-            <div class="rectangle-container">
-                <h3>Leaderboard</h3>
+            <div class="rectangle-container-2">
+                <h2>Leaderboard</h2>
                 {% if leaderboard %}
                     <ol>
                         {% for entry in leaderboard %}
@@ -30,13 +30,13 @@
             </div>
 
             <!--Campaigns-->
-            <div class="rectangle-container">
-                <h3>Current Campaigns</h3>
+            <div class="rectangle-container-2">
+                  <h2>Current Campaigns</h2>
                 {% if campaigns %}
                     <ul>
                         {% for campaign in campaigns %}
                             <li>
-                                <h1>{{ campaign.name }}</h1><br>
+                                <h3>{{ campaign.name }}</h3><br>
                                 Start Date: {{ campaign.start_date }}<br>
                                 End Date: {{ campaign.end_date }}<br>
                                 Points: {{ campaign.points }}<br>
@@ -49,6 +49,7 @@
                 {% endif %}
             </div>
         </div>
+
     {% else %}
     {% block login %}
                     {% include 'login.html' %}

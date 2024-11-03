@@ -7,6 +7,8 @@ from .models import user_profile, campaign, service
 def home_view(request, *args, **kwargs):
     print(args,kwargs)
     print(request.user)
+    today = timezone.now().date()
+    campaigns = campaign.objects.filter(start_date__lt=today, end_date__gt=today)
     if request.user.groups.filter(name='Supervisor').exists():
         group_name = "Supervisor"
     else:
