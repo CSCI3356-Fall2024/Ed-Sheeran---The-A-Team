@@ -20,6 +20,7 @@ class campaign(models.Model):
 
 class service(models.Model):
     name = models.CharField(max_length = 20)
+    id = models.IntegerField(primary_key=True)
     image = models.ImageField(upload_to='service_images/')
     desc = models.CharField(max_length = 100)
     how_to_use = models.CharField(max_length = 100)
