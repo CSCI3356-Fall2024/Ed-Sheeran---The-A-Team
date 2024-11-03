@@ -8,7 +8,6 @@ from django.utils import timezone
 def home_view(request, *args, **kwargs):
     print(args,kwargs)
     print(request.user)
-    #campaigns = campaign.objects.all()
     today = timezone.now().date()
     campaigns = campaign.objects.filter(start_date__lt=today, end_date__gt=today)
     if request.user.groups.filter(name='Supervisor').exists():
