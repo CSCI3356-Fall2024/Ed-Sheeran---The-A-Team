@@ -13,9 +13,9 @@
         <h2 style="text-align: center;">Home</h2>
         <p class="capitalize">Welcome, {{ user.username }}!</p>
         <p style="line-height: 0.5;">You are a {{ group_name }}!</p>
-        <div class="container-2"> <!--Big box around both-->
+        <div class="container"> <!--Big box around both-->
             <!--Leaderboard-->
-            <div class="rectangle-container-2">
+            <div class="rectangle-container">
                 <h2>Leaderboard</h2>
                 {% if leaderboard %}
                     <ol>
@@ -30,7 +30,7 @@
             </div>
 
             <!--Campaigns-->
-            <div class="rectangle-container-2">
+            <div class="rectangle-container">
                   <h2>Current Campaigns</h2>
                 {% if campaigns %}
                     <ul>

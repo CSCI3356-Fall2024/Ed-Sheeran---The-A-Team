@@ -10,13 +10,6 @@ body .text-center{
 
 .container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-.container-2 {
-    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: stretch;
@@ -24,7 +17,7 @@ body .text-center{
     justify-content: space-around;
     width: 100%;
 }
-.rectangle-container-2 {
+.rectangle-container {
     flex:1
     padding: 20px;
     background-color: #f4d6a5;
@@ -36,31 +29,18 @@ body .text-center{
     text-align: center;
 }
 
-.rectangle-container-2 h2 {
+.rectangle-container h2 {
     margin-bottom: 15px;
 }
 
-.rectangle-container-2 ul {
+.rectangle-container ul {
     list-style-type: none;
     padding-left: 0;
 }
-.rectangle-container-2 ol {
+.rectangle-container ol {
     list-style-type: none;
     padding-left: 0;
 }
-.rectangle-container-2 li {
+.rectangle-container li {
     margin-bottom: 10px;
-}
-
-.rectangle-container {
-    width: 35%;
-    border: 2px solid #312825;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }
