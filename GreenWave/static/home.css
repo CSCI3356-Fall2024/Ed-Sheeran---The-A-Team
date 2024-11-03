@@ -18,7 +18,7 @@ body .text-center{
     width: 100%;
 }
 .rectangle-container {
-    flex:1
+    /* flex:1; */
     padding: 20px;
     background-color: #f4d6a5;
     display: flex;
