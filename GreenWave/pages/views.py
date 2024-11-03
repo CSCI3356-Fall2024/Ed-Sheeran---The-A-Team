@@ -2,17 +2,20 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import profile_form, campaign_form, service_form
 from .models import user_profile, campaign, service
+from django.utils import timezone
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
     print(args,kwargs)
     print(request.user)
-    campaigns = campaign.objects.all()
+    #campaigns = campaign.objects.all()
+    today = timezone.now().date()
+    campaigns = campaign.objects.filter(start_date__lt=today, end_date__gt=today)
     if request.user.groups.filter(name='Supervisor').exists():
         group_name = "Supervisor"
     else:
         group_name = "Regular User"
-    
+
     context = {
         'group_name': group_name,
         'campaigns': campaigns,
