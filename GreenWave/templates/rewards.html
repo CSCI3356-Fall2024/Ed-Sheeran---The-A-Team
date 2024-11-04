@@ -45,9 +45,15 @@
             background-color: #f9f0e9;
             padding: 15px;
             border-radius: 8px;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             font-family: Arial, sans-serif;
+        }
+
+        .transaction-history-slider {
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 5px;
         }
 
         .transaction-date {
@@ -77,7 +83,7 @@
         }
 
         .transaction-points {
-            width: 80px;
+            width: 100px;
             text-align: right;
             font-weight: bold;
             color: #4b8c4a;
@@ -129,27 +135,37 @@
         <!--History-->
         <div class="transaction-history">
             <h3>TRANSACTION HISTORY</h3>
-    
-            <div class="transaction-date">OCTOBER 2024</div>
-            <div class="transaction-item">
-                <span class="transaction-date-info">10/02/24</span>
-                <span class="transaction-initiative">Green2Go</span>
-                <span class="transaction-points">+5 <span class="total-points">250 points</span></span>
-                <span class="transaction-location">Carney</span>
-            </div>
-            <div class="transaction-item">
-                <span class="transaction-date-info">10/02/24</span>
-                <span class="transaction-initiative">Reward Redeemed—Free Cookie</span>
-                <span class="transaction-points">-100 <span class="total-points">245 points</span></span>
-                <span class="transaction-location">Lower</span>
-            </div>
+            
+            <div class="transaction-history-slider">
+                <div class="transaction-date">OCTOBER 2024</div>
+                <div class="transaction-item">
+                    <span class="transaction-date-info">10/02/24</span>
+                    <span class="transaction-initiative">Green2Go</span>
+                    <span class="transaction-points">+5 <span class="total-points">250 points</span></span>
+                    <span class="transaction-location">Carney</span>
+                </div>
+                <div class="transaction-item">
+                    <span class="transaction-date-info">10/02/24</span>
+                    <span class="transaction-initiative">Reward Redeemed—Free Cookie</span>
+                    <span class="transaction-points">-100 <span class="total-points">245 points</span></span>
+                    <span class="transaction-location">Lower</span>
+                </div>
 
-            <div class="transaction-date">SEPTEMBER 2024</div>
-            <div class="transaction-item">
-                <span class="transaction-date-info">09/30/24</span>
-                <span class="transaction-initiative">Recycle Bin</span>
-                <span class="transaction-points">+10 <span class="total-points">345 points</span></span>
-                <span class="transaction-location">Eagles Nest</span>
+                <div class="transaction-date">SEPTEMBER 2024</div>
+                <div class="transaction-item">
+                    <span class="transaction-date-info">09/30/24</span>
+                    <span class="transaction-initiative">Recycle Bin</span>
+                    <span class="transaction-points">+10 <span class="total-points">345 points</span></span>
+                    <span class="transaction-location">Eagles Nest</span>
+                </div>
+
+                <div class="transaction-date">AUGUST 2024</div>
+                <div class="transaction-item">
+                    <span class="transaction-date-info">08/15/24</span>
+                    <span class="transaction-initiative">Green2Go</span>
+                    <span class="transaction-points">+10 <span class="total-points">335 points</span></span>
+                    <span class="transaction-location">Hillside Cafe</span>
+                </div>
             </div>
         </div>
     </div>
