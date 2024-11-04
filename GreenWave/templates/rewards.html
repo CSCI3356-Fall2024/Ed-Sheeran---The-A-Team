@@ -25,7 +25,7 @@
         }
 
         .progress-bar {
-            background-color: #4CAF50;
+            background-color: #98bea5 !important; 
             height: 100%;
             border-radius: 10px;
             transition: width 0.5s ease-in-out;
@@ -38,6 +38,60 @@
             margin-top: 5px;
             font-size: 0.9em;
             color: #666;
+        }
+
+            
+        .transaction-history {
+            background-color: #f9f0e9;
+            padding: 15px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+        }
+
+        .transaction-date {
+            font-weight: bold;
+            color: #555;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .transaction-date-info {
+            width: 80px;
+            font-weight: bold;
+        }
+
+        .transaction-initiative {
+            flex: 1;
+            padding-left: 10px;
+            color: #333;
+        }
+
+        .transaction-points {
+            width: 80px;
+            text-align: right;
+            font-weight: bold;
+            color: #4b8c4a;
+        }
+
+        .total-points {
+            font-size: 0.8em;
+            color: #999;
+        }
+
+        .transaction-location {
+            width: 80px;
+            text-align: right;
+            color: #777;
         }
 
     </style>
@@ -60,7 +114,7 @@
             </div>
                            
             <div class="level-indicators">
-                <span>0 points</span>
+                <span>0 Points</span>
                 <span>Next Level: X Points</span>
             </div>
                     
@@ -76,7 +130,27 @@
         <div class="transaction-history">
             <h3>TRANSACTION HISTORY</h3>
     
-            <p>Not done yet</p>
+            <div class="transaction-date">OCTOBER 2024</div>
+            <div class="transaction-item">
+                <span class="transaction-date-info">10/02/24</span>
+                <span class="transaction-initiative">Green2Go</span>
+                <span class="transaction-points">+5 <span class="total-points">250 points</span></span>
+                <span class="transaction-location">Carney</span>
+            </div>
+            <div class="transaction-item">
+                <span class="transaction-date-info">10/02/24</span>
+                <span class="transaction-initiative">Reward Redeemed—Free Cookie</span>
+                <span class="transaction-points">-100 <span class="total-points">245 points</span></span>
+                <span class="transaction-location">Lower</span>
+            </div>
+
+            <div class="transaction-date">SEPTEMBER 2024</div>
+            <div class="transaction-item">
+                <span class="transaction-date-info">09/30/24</span>
+                <span class="transaction-initiative">Recycle Bin</span>
+                <span class="transaction-points">+10 <span class="total-points">345 points</span></span>
+                <span class="transaction-location">Eagles Nest</span>
+            </div>
         </div>
     </div>
 </div>
