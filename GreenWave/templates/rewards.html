@@ -1,7 +1,48 @@
 <head>
     <title>Green Rewards</title>
     <link rel="stylesheet" href="../../static/service_styles.css">
+    
+    <style>
+        .progress-bar-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .points-text {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .progress-wrapper {
+            background-color: #e5e5e5;
+            border-radius: 10px;
+            height: 25px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            background-color: #4CAF50;
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease-in-out;
+            width: 25%;
+        }
+
+        .level-indicators {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+    </style>
 </head>
+
 
 <div>
     {% extends 'base.html' %}
@@ -14,8 +55,21 @@
         <!--Progress bar-->
         <div class="progress-bar-container">
             <p class="points-text">You have <strong>X Points!</strong></p>
-            <p>Progress bar goes here</p>
+            <div class="progress-wrapper">
+                <div class="progress-bar"></div> 
+            </div>
+                           
+            <div class="level-indicators">
+                <span>0 points</span>
+                <span>Next Level: X Points</span>
+            </div>
+                    
+                    
+        
+            
+                
             <p>Valid until 12/19/2024</p>
+
         </div>
     
         <!--History-->
