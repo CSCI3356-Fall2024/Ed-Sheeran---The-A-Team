@@ -29,7 +29,47 @@
             height: 100%;
             border-radius: 10px;
             transition: width 0.5s ease-in-out;
-            width: 25%;
+            width: 35%;
+        }
+
+        .tick-marks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none; }
+
+        .tick {
+            position: absolute;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: #e9877e; 
+            opacity: 0.7;
+        }
+
+        .tick-0 { left: 0%; }
+        .tick-200 { left: 20%; }
+        .tick-400 { left: 40%; }
+        .tick-600 { left: 60%; }
+        .tick-800 { left: 80%; }
+        .tick-1000 { left: 100%; }
+
+        .tick-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .tick-labels span {
+            width: 40px;
+            margin-left: -20px;
+            text-align: center;
         }
 
         .level-indicators {
@@ -39,6 +79,7 @@
             font-size: 0.9em;
             color: #666;
         }
+
 
             
         .transaction-history {
@@ -117,15 +158,31 @@
             <p class="points-text">You have <strong>X Points!</strong></p>
             <div class="progress-wrapper">
                 <div class="progress-bar"></div> 
+                <div class="tick-marks">
+                    <div class="tick tick-0"></div>
+                    <div class="tick tick-200"></div>
+                    <div class="tick tick-400"></div>
+                    <div class="tick tick-600"></div>
+                    <div class="tick tick-800"></div>
+                    <div class="tick tick-1000"></div>
+                </div>
             </div>
+            
+            <div class="tick-labels">
+                <span>0</span>
+                <span>200</span>
+                <span>400</span>
+                <span>600</span>
+                <span>800</span>
+                <span>1000</span>
+            </div>
+                 
                            
             <div class="level-indicators">
-                <span>0 Points</span>
+                
                 <span>Next Level: X Points</span>
             </div>
-                    
-                    
-        
+                     
             
                 
             <p>Valid until 12/19/2024</p>
@@ -135,7 +192,7 @@
         <!--History-->
         <div class="transaction-history">
             <h3>TRANSACTION HISTORY</h3>
-            
+            <!-- Example Transactions-->
             <div class="transaction-history-slider">
                 <div class="transaction-date">OCTOBER 2024</div>
                 <div class="transaction-item">
