@@ -59,6 +59,7 @@
         .tick-1000 { left: 100%; }
 
         .tick-labels {
+            position: relative;
             display: flex;
             justify-content: space-between;
             font-size: 0.9em;
@@ -66,16 +67,22 @@
             margin-top: 5px;
         }
 
-        .tick-labels span {
-            width: 40px;
-            margin-left: -20px;
+        .tick-label {
+            position: absolute;
             text-align: center;
+            transform: translateX(-50%);
         }
+        .label-custom0 { left: 0%; }
+        .label-custom1 { left: 20%; }
+        .label-custom2 { left: 40%; }
+        .label-custom3 { left: 60%; }
+        .label-custom4 { left: 80%; }
+        .label-custom5 { left: 100%; }
 
         .level-indicators {
             display: flex;
             justify-content: space-between;
-            margin-top: 5px;
+            margin-top: 20px;
             font-size: 0.9em;
             color: #666;
         }
@@ -169,12 +176,12 @@
             </div>
             
             <div class="tick-labels">
-                <span>0</span>
-                <span>200</span>
-                <span>400</span>
-                <span>600</span>
-                <span>800</span>
-                <span>1000</span>
+                <span class="tick-label label-custom0">0</span>
+                <span class="tick-label label-custom1">200</span>
+                <span class="tick-label label-custom2">400</span>
+                <span class="tick-label label-custom3">600</span>
+                <span class="tick-label label-custom4">800</span>
+                <span class="tick-label label-custom5">1000</span>
             </div>
                  
                            
