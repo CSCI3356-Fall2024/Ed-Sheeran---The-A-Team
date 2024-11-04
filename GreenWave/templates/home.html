@@ -40,6 +40,11 @@
                                 Start Date: {{ campaign.start_date }}<br>
                                 End Date: {{ campaign.end_date }}<br>
                                 Points: {{ campaign.points }}<br>
+                                Available Places:
+                                {% for place in campaign.places.all %}
+                                  {{ place.name }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                                <br>
                                 Description: {{ campaign.description }}<br>
                             </li>
                         {% endfor %}

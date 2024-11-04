@@ -33,10 +33,11 @@ def campaign_view(request):
         if request.method == 'POST':
             form = campaign_form(request.POST)
             if form.is_valid():
-                form.save()
+                campaign_instance = form.save()
+                form._save_m2m()
                 return redirect('home')
         else:
-             form = campaign_form(request.POST)
+             form = campaign_form()
         return render(request, 'campaigns.html', {'form': form, 'group_name': group_name})
     else:
          group_name = "Regular User"

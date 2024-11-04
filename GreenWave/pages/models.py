@@ -10,6 +10,12 @@ class user_profile(models.Model):
     major1 = models.CharField(max_length=200)
     major2 = models.CharField(max_length=200, blank = True, null = True)
 
+class Place(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
 class campaign(models.Model):
     name = models.CharField(max_length=200)
     start_date = models.DateField()
@@ -17,6 +23,7 @@ class campaign(models.Model):
     points = models.IntegerField()
     validation = models.CharField(max_length=200)
     description = models.TextField()
+    places = models.ManyToManyField(Place)
 
 class service(models.Model):
     name = models.CharField(max_length = 20)

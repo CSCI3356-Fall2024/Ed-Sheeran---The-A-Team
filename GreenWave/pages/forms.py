@@ -2,6 +2,7 @@ from django import forms
 from .models import user_profile
 from .models import campaign
 from .models import service
+from .models import Place
 
 class profile_form(forms.ModelForm):
     YEAR_CHOICES = [(2025, '2025'),(2026, '2026'),(2027, '2027'),(2028, '2028')]
@@ -21,7 +22,7 @@ class profile_form(forms.ModelForm):
 class campaign_form(forms.ModelForm):
     VALIDATION_CHOICES = [('Choice 1', 'Choice 1'), ('Choice 2', 'Choice 2')]
     validation = forms.ChoiceField(choices = VALIDATION_CHOICES)
-    
+
     start_date = forms.DateField(
         widget=forms.DateInput(attrs={'placeholder': 'MM/DD/YYYY'})
     )
@@ -29,10 +30,12 @@ class campaign_form(forms.ModelForm):
     end_date = forms.DateField(
         widget=forms.DateInput(attrs={'placeholder': 'MM/DD/YYYY'})
     )
-    
+    PLACE_CHOICES = [('1', 'Lower Live'), ('2', 'Stuart Dining Hall'), ('3', 'Carney Dining Hall'), ('4', 'Eagles Nest'), ('5', 'Hillside Cafe'), ('6', 'The Rat')]
+    places = forms.ModelMultipleChoiceField(queryset=Place.objects.all(), widget=forms.CheckboxSelectMultiple)
+
     class Meta:
         model = campaign
-        fields = ["name", "start_date", "end_date", "points", "validation", "description"]
+        fields = ["name", "start_date", "end_date", "points", "validation", "description", "places"]
 
 class service_form(forms.ModelForm):
     class Meta:
