@@ -82,18 +82,19 @@ def profile_view(request):
         if 'update' in request.POST:
             form = profile_form(instance=user_profile_instance)
         else:
-            form = profile_form(request.POST, request.FILES)
+            form = profile_form(request.POST, request.FILES, instance=user_profile_instance)
             if form.is_valid():
                 if user_profile_instance:
                     profile = form.save(commit=False)
                     profile.user = request.user
                     profile.id = user_profile_instance.id
                     profile.save()
+                    return redirect('profile')
                 else:
                     profile = form.save(commit=False)
                     profile.user = request.user
                     profile.save()
-                return redirect('home')
+                    return redirect('home')
 
     else:
         form = profile_form(instance=user_profile_instance)
