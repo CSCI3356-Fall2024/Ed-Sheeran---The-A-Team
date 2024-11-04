@@ -11,7 +11,7 @@
     {% if user.is_authenticated %}
         {% include 'navbar.html' %}
         <h2 style="text-align: center;">Home</h2>
-        <p class="capitalize">Welcome, {{ user.username }}!</p>
+        <p style="text-transform:capitalize;" >Welcome, {{ user.username }}!</p>
         <p style="line-height: 0.5;">You are a {{ group_name }}!</p>
         <div class="container"> <!--Big box around both-->
             <!--Leaderboard-->
