@@ -19,8 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from django.contrib.auth.views import LogoutView
-
+from pages.views import logout_view
 from pages.views import home_view
 from pages.views import campaign_view
 from pages.views import profile_view, rewards
@@ -28,12 +27,17 @@ from pages.views import service_detail_view, service_list_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('auth/',include('social_django.urls', namespace='social')),
+    # path('login/', TemplateView.as_view(template_name='login.html'), name = 'login'),
+    # path('accounts/profile/',login_required(TemplateView.as_view(template_name='profile.html')), name = 'profile'),
+
+    path('logout/', logout_view, name = 'logout'),
     path('', home_view, name= 'home'),
     path('accounts/', include('allauth.urls')),
     path("accounts/profile/", profile_view, name="profile"),
     path("service/<int:id>//", service_detail_view, name="service_detail"),
     path("services/", service_list_view, name="service_list"),
-    path("", LogoutView.as_view(), name="logout"), #I have no idea how to do the logout, neff maybe you can because you did the login?
+    # path("", LogoutView.as_view(), name="logout"), #I have no idea how to do the logout, neff maybe you can because you did the login?
     path("rewards/", rewards, name="rewards"),
     path("campaigns/", campaign_view, name="campaigns")
 ]

@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.contrib.auth import logout
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import profile_form, campaign_form, service_form
 from .models import user_profile, campaign, service
@@ -21,6 +22,10 @@ def home_view(request, *args, **kwargs):
     }
 
     return render(request, 'home.html', context)
+
+def logout_view(request):
+    logout(request)
+    return render(request, 'home.html')
 
 def campaign_view(request):
     if request.user.groups.filter(name='Supervisor').exists():
