@@ -132,4 +132,10 @@ def rewards(request):
         group_name = "Supervisor"
     else:
         group_name = "Regular User"
-    return render(request, "rewards.html", {'group_name': group_name})
+    # New, trying to make Bar
+    context = {
+        'group_name': group_name,
+        'current_points': 75,
+        'next_level_threshold': 1000,
+    }
+    return render(request, "rewards.html", context)
