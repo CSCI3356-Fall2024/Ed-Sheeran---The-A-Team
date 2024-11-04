@@ -7,7 +7,7 @@ from .models import Place
 class profile_form(forms.ModelForm):
     YEAR_CHOICES = [(2025, '2025'),(2026, '2026'),(2027, '2027'),(2028, '2028')]
     year = forms.ChoiceField(choices=YEAR_CHOICES)
-    SCHOOL_CHOICES = [('Boston College', 'Boston College')]
+    SCHOOL_CHOICES = [('MCAS', 'MCAS'), ('CSOM', 'CSOM'), ('CSON', 'CSON'), ('LSEHD', 'LSEHD'), ('Messina', 'Messina')]
     school = forms.ChoiceField(choices = SCHOOL_CHOICES)
 
     class Meta:
