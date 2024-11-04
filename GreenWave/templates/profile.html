@@ -24,23 +24,48 @@
 
 <div class="container container-color">
     {% if user_profile %}
-        <h2>Your Profile</h2>
-        <p>School: {{ user_profile.school }}</p>
-        <p>Year: {{ user_profile.year }}</p>
-        <p>Major 1: {{ user_profile.major1 }}</p>
-        <p>Major 2: {{ user_profile.major2 }}</p>
-        {% if user_profile.image %}
-            <img src="{{ user_profile.image.url }}" alt="Profile Picture" style="max-width: 200px; max-height: 200px;">
+      {% if request.POST.update %}
+          <h2>Update Your Profile</h2>
+          <form method="POST" class="form-group" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ form.image.label_tag }}
+              {{ form.image }}
+              <div class="form-group">
+                  {{ form.school.label_tag }}
+                  {{ form.school }}
+              </div>
+              <div class="form-group">
+                  {{ form.year.label_tag }}
+                  {{ form.year }}
+              </div>
+              <div class="form-group">
+                  <label>Major 1: </label>
+                  {{ form.major1 }}
+              </div>
+              <div class="form-group">
+                  <label>Major 2: </label>
+                  {{ form.major2 }}
+              </div>
+              <button type="submit" class = "button-color">SAVE</button>
+          </form>
         {% else %}
-            <p>No profile picture uploaded.</p>
+          <h2>Your Profile</h2>
+          <p>School: {{ user_profile.school }}</p>
+          <p>Year: {{ user_profile.year }}</p>
+          <p>Major 1: {{ user_profile.major1 }}</p>
+          <p>Major 2: {{ user_profile.major2 }}</p>
+          {% if user_profile.image %}
+              <img src="{{ user_profile.image.url }}" alt="Profile Picture" style="max-width: 200px; max-height: 200px;">
+          {% else %}
+              <p>No profile picture uploaded.</p>
+          {% endif %}
+
+          <form method="POST" action="{% url 'profile' %}" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input type="hidden" name="update" value="true">  <!-- Hidden input -->
+              <button type="submit" class = "button-color">Update Profile</button>
+          </form>
         {% endif %}
-
-        <form method="POST" action="{% url 'profile' %}" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="hidden" name="update" value="true">  <!-- Hidden input -->
-            <button type="submit" class = "button-color">Update Profile</button>
-        </form>
-
     {% else %}
         <h2>Create Your Profile</h2>
         <form method="POST" class="form-group" enctype="multipart/form-data">
@@ -64,32 +89,6 @@
             </div>
             <div class="form-group">
                 <label>Major 2 </label>
-                {{ form.major2 }}
-            </div>
-            <button type="submit" class = "button-color">SAVE</button>
-        </form>
-    {% endif %}
-
-    {% if request.POST.update %}
-        <h2>Update Your Profile</h2>
-        <form method="POST" class="form-group" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.image.label_tag }}
-            {{ form.image }}
-            <div class="form-group">
-                {{ form.school.label_tag }}
-                {{ form.school }}
-            </div>
-            <div class="form-group">
-                {{ form.year.label_tag }}
-                {{ form.year }}
-            </div>
-            <div class="form-group">
-                <label>Major 1: </label>
-                {{ form.major1 }}
-            </div>
-            <div class="form-group">
-                <label>Major 2: </label>
                 {{ form.major2 }}
             </div>
             <button type="submit" class = "button-color">SAVE</button>
