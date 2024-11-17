@@ -159,3 +159,16 @@ def exchange(request):
         "points" : points
     }
     return render(request, "exchange.html", context)
+
+def input(request):
+    if request.user.groups.filter(name='Supervisor').exists():
+        group_name = "Supervisor"
+    else:
+        group_name = "Regular User"
+    
+    points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
+    context = {
+        'group_name': group_name,
+        "points" : points
+    }
+    return render(request, "input.html", context)

@@ -148,6 +148,14 @@
             color: #777;
         }
 
+        .btn-primary-color {
+          background-color: #efcdd2;
+          color: white;
+          text-emphasis-color: black;
+        }
+        .bg-color {
+          background-color: #fcf4e2;
+        }
     </style>
 </head>
 
@@ -163,7 +171,10 @@
         <!--Progress bar-->
         <div class="progress-bar-container">
             <p class="points-text">You have <strong> {{ points }} points!</strong></p>
-            <a href="{% url 'exchange' %}">Click to Exchange Points for Rewards!</a>
+            <a href="{% url 'input' %}" class="btn btn-primary-color">Click to Input Usages!</a>
+            <div class="btn-group">
+                <a href="{% url 'exchange' %}" class="btn btn-primary-color">Click to Exchange Points for Rewards!</a>
+            </div>
             <div class="progress-wrapper">
                 <div class="progress-bar"></div> 
                 <div class="tick-marks">
