@@ -16,9 +16,12 @@ def home_view(request, *args, **kwargs):
     else:
         group_name = "Regular User"
 
+    #this does the points if you need it
+    points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
     context = {
         'group_name': group_name,
         'campaigns': campaigns,
+        'points' : points,
     }
 
     return render(request, 'home.html', context)
@@ -52,7 +55,7 @@ def service_create(request):
         form = service_form(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('service_list') #where do we want to redirect, can I make it unique per service by an ID or new page?
+            return redirect('service_list')
     else:
         form = service_form()
 
@@ -63,7 +66,7 @@ def service_list(request):
         group_name = "Supervisor"
     else:
         group_name = "Regular User"
-    serv = service.objects.all()  # Get all service instances
+    serv = service.objects.all() 
     return render(request, 'service_list.html', {'services': service, 'group_name': group_name})
 
 def navbar_view(request):
@@ -135,9 +138,24 @@ def rewards(request):
     else:
         group_name = "Regular User"
     # New, trying to make Bar
+    points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
     context = {
         'group_name': group_name,
-        'current_points': 75,
+        'current_points': 75, #this is just points so we could remove
         'next_level_threshold': 1000,
+        "points" : points
     }
     return render(request, "rewards.html", context)
+
+def exchange(request):
+    if request.user.groups.filter(name='Supervisor').exists():
+        group_name = "Supervisor"
+    else:
+        group_name = "Regular User"
+    
+    points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
+    context = {
+        'group_name': group_name,
+        "points" : points
+    }
+    return render(request, "exchange.html", context)

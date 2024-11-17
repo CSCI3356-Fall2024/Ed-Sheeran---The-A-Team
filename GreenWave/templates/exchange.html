@@ -1,0 +1,26 @@
+<head>
+     <link rel="stylesheet" href="../../static/rewards.css">
+</head>
+
+{% extends 'base.html'%}
+
+<div>
+    {% block title %}GreenWave Home{% endblock %}
+    {% block navbar %}{% endblock %}
+    {%block content%}
+    {% if user.is_authenticated %}
+        {% include 'navbar.html' %}
+        <h2 style="text-align: center;">Exchange</h2>
+        <p style="text-transform:capitalize;" >Welcome, {{ user.username }}!</p>
+        <p style="line-height: 0.5;">You are a {{ group_name }}!</p>
+
+
+        <p style="line-height: 0.5;">Put reward point total here: {{ points }}</p>
+
+    {% else %}
+    {% block login %}
+                    {% include 'login.html' %}
+                {% endblock %}
+    {% endif %}
+    {%endblock%}
+</div>
