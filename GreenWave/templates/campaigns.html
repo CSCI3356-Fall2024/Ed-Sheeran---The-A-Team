@@ -7,7 +7,9 @@
 {% block title %}GreenWave Campaign Form{% endblock %}
 
 {% block content %}
-<h1 id="heading">Create a Campaign:</h1>
+<div class="heading-div">
+    <h1 id="heading">Create a Campaign</h1>
+</div>
 
 <div class="form">
     <form method="POST" class="container" enctype="multipart/form-data">
@@ -40,7 +42,7 @@
                     </div>
                 </div>
                 <div class="block">
-                    <div class="form-group">
+                    <div class="form-group description">
                         {{ form.description.label_tag }}
                         {{ form.description }}
                     </div>

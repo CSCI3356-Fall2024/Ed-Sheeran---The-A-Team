@@ -1,9 +1,23 @@
-#heading {
-    margin-left: 5%;
+.heading-div {
+    margin: 0 auto;
+    text-align: center;
 }
 
 .form {
     margin: 0 auto;
+    width: 100%;
+}
+
+.block {
+    width: 500px;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .container {
@@ -12,7 +26,26 @@
     align-items: center;
 }
 
-.fields {
+.fields{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.description {
+    height: 100%;
+}
+
+.submit-form {
+    width: 100%;
+    text-align: center;
+}
+
+.button-color {
+    background-color: #89bea5;
+    font-weight: bold;
+    width: 50%;
+    height: 50px;
 }
