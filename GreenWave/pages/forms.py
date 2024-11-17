@@ -3,6 +3,7 @@ from .models import user_profile
 from .models import campaign
 from .models import service
 from .models import Place
+from .models import reward
 
 class profile_form(forms.ModelForm):
     YEAR_CHOICES = [('', 'Please choose a year'), (2025, '2025'),(2026, '2026'),(2027, '2027'),(2028, '2028')]
@@ -41,3 +42,8 @@ class service_form(forms.ModelForm):
     class Meta:
         model = service
         fields = ["name", "desc", "how_to_use", "why_to_use", "points_per_use"]
+
+class reward_form(forms.ModelForm):
+    class Meta:
+        model = reward
+        fields = ["name", "desc", "cost"]

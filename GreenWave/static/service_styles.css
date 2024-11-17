@@ -110,3 +110,12 @@ h2 {
     color: #312825;
     font-size: 1.5em;
 }
+
+.btn-primary-color {
+    background-color: #efcdd2;
+    color: white;
+    text-emphasis-color: black;
+  }
+  .bg-color {
+    background-color: #fcf4e2;
+  }

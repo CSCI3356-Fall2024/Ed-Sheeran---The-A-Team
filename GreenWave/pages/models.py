@@ -38,9 +38,12 @@ class service(models.Model):
     def __str__(self):
         return self.name
 
-class rewards(models.Model): #these are the rewards users can get
+class reward(models.Model): #these are the rewards users can get
     name = models.CharField(max_length = 25)
     id = models.IntegerField(primary_key=True)
     image = models.ImageField(upload_to='reward_images/')
     desc = models.CharField(max_length = 100)
     cost = models.IntegerField()
+
+    def __str__(self):
+        return self.name

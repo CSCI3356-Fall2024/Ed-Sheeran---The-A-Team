@@ -1,26 +1,37 @@
 <head>
-     <link rel="stylesheet" href="../../static/rewards.css">
+    <link rel="stylesheet" href="../../static/service_styles.css">
 </head>
 
-{% extends 'base.html'%}
-
 <div>
-    {% block title %}GreenWave Home{% endblock %}
-    {% block navbar %}{% endblock %}
-    {%block content%}
-    {% if user.is_authenticated %}
-        {% include 'navbar.html' %}
-        <h2 style="text-align: center;">Exchange</h2>
-        <p style="text-transform:capitalize;" >Welcome, {{ user.username }}!</p>
-        <p style="line-height: 0.5;">You are a {{ group_name }}!</p>
+	{% extends 'base.html' %}
+	{% block title %} Exchange {% endblock %}
+	{% block content %}
 
-
-        <p style="line-height: 0.5;">Put reward point total here: {{ points }}</p>
-
-    {% else %}
-    {% block login %}
-                    {% include 'login.html' %}
-                {% endblock %}
-    {% endif %}
-    {%endblock%}
+    <!-- Using the same setup as services so usability is easy across website-->
+	<div class="service-container">
+        <p> Your total points: {{ points }}</p>
+		<ul class="services-list">
+			{% for reward in rewards %}
+			<li class="service-item">
+            <a href="{% url 'service_detail' reward.id %}" class="service-box"> <!-- currently linking back to the services, not the reward-->
+					<div class="service-box">
+						<div class="service-image">
+							{% if reward.image %}
+								<img src="{{ reward.image.url }}" alt="{{ reward.name }}">
+							{% else %}
+								<p>No image available</p>
+							{% endif %}
+						</div>
+						<div class="service-content">
+							<p class="service-name">{{ reward.name }}</p>
+							<p class="short-description">{{ reward.desc }}</p> 
+                            <p class="short-description">Price: {{ reward.cost }}</p>
+						</div>
+					</div>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	{% endblock %}
+	</div>
 </div>

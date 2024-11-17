@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import profile_form, campaign_form, service_form
-from .models import user_profile, campaign, service
+from .models import user_profile, campaign, service, reward
 from django.utils import timezone
 
 # Create your views here.
@@ -154,9 +154,11 @@ def exchange(request):
         group_name = "Regular User"
     
     points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
+    rewards = reward.objects.all()
     context = {
         'group_name': group_name,
-        "points" : points
+        "points" : points,
+        'rewards': rewards,
     }
     return render(request, "exchange.html", context)
 

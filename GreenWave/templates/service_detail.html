@@ -17,6 +17,10 @@
             <p>{{ service.how_to_use }}</p>
             <h2>Why to Use</h2>
             <p>{{ service.why_to_use }}</p>
+
+            <a href="{% url 'input' %}" class="btn btn-primary-color">Click to Input Usages!</a>
+
+            
         </div>
         <div class="image-section">
             {% if service.image %}
