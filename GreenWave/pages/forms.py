@@ -47,3 +47,6 @@ class reward_form(forms.ModelForm):
     class Meta:
         model = reward
         fields = ["name", "desc", "cost"]
+
+class points_form(forms.Form):
+    campaign_choice = forms.ModelChoiceField(queryset=campaign.objects.all(), label='Campaign')

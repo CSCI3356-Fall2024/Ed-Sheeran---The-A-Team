@@ -11,14 +11,21 @@
    {% if user.is_authenticated %}
        {% include 'navbar.html' %}
        <h2 style="text-align: center;">Input</h2>
-       <p style="text-transform:capitalize;" >Welcome, {{ user.username }}!</p>
-       <p style="line-height: 0.5;">You are a {{ group_name }}!</p>
+       <!--<p style="text-transform:capitalize;" >Welcome, {{ user.username }}!</p>
+       <p style="line-height: 0.5;">You are a {{ group_name }}!</p>-->
 
        <!-- you should come here from the service page or rewards page, this is were you select service and get points-->
 
 
        <p style="line-height: 0.5;">Put reward point total here: {{ points }}</p>
 
+       <div>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+       </div>
    {% else %}
    {% block login %}
                    {% include 'login.html' %}

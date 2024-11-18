@@ -26,6 +26,9 @@ class campaign(models.Model):
     description = models.TextField()
     places = models.ManyToManyField(Place)
 
+    def __str__(self):
+        return self.name
+
 class service(models.Model):
     name = models.CharField(max_length = 20)
     id = models.IntegerField(primary_key=True)

@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import profile_form, campaign_form, service_form
+from .forms import profile_form, campaign_form, service_form, points_form
 from .models import user_profile, campaign, service, reward
 from django.utils import timezone
 
@@ -163,14 +163,32 @@ def exchange(request):
     return render(request, "exchange.html", context)
 
 def input(request):
-    if request.user.groups.filter(name='Supervisor').exists():
-        group_name = "Supervisor"
-    else:
-        group_name = "Regular User"
+    #if request.user.groups.filter(name='Supervisor').exists():
+        #group_name = "Supervisor"
+    #else:
+        #group_name = "Regular User"
     
-    points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
-    context = {
-        'group_name': group_name,
-        "points" : points
-    }
-    return render(request, "input.html", context)
+    profile = user_profile.objects.get(user=request.user)
+
+    if request.method == 'POST':
+        form = points_form(request.POST)
+        if form.is_valid():
+            campaign_choice = form.cleaned_data['campaign_choice']
+            
+            points = profile.points
+            updated_points = points + campaign_choice.points
+            
+            profile.points = updated_points
+
+            profile.save()
+
+            return redirect('/')
+    else:
+        form = points_form()
+    return render(request, 'input.html', {'form': form,})
+    #points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
+    #context = {
+        #'group_name': group_name,
+        #"points" : points
+   # }
+    #return render(request, "input.html", context)
