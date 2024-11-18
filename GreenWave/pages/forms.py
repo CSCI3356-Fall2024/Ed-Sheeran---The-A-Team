@@ -41,7 +41,7 @@ class campaign_form(forms.ModelForm):
 class service_form(forms.ModelForm):
     class Meta:
         model = service
-        fields = ["name", "desc", "how_to_use", "why_to_use", "points_per_use"]
+        fields = ["name", "desc", "how_to_use", "why_to_use", "points_per_use", "link"]
 
 class reward_form(forms.ModelForm):
     class Meta:

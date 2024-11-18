@@ -37,6 +37,7 @@ class service(models.Model):
     how_to_use = models.CharField(max_length = 100)
     why_to_use = models.CharField(max_length = 100)
     points_per_use = models.IntegerField()
+    link = models.URLField(max_length = 200)
 
     def __str__(self):
         return self.name
