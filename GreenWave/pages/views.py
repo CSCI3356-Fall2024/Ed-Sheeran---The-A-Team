@@ -163,11 +163,6 @@ def exchange(request):
     return render(request, "exchange.html", context)
 
 def input(request):
-    #if request.user.groups.filter(name='Supervisor').exists():
-        #group_name = "Supervisor"
-    #else:
-        #group_name = "Regular User"
-    
     profile = user_profile.objects.get(user=request.user)
 
     if request.method == 'POST':
@@ -185,10 +180,6 @@ def input(request):
             return redirect('/')
     else:
         form = points_form()
-    return render(request, 'input.html', {'form': form,})
-    #points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
-    #context = {
-        #'group_name': group_name,
-        #"points" : points
-   # }
-    #return render(request, "input.html", context)
+
+    points_value = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
+    return render(request, 'input.html', {'form': form, 'points': points_value})

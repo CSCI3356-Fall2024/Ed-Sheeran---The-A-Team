@@ -4,6 +4,7 @@ from .models import campaign
 from .models import service
 from .models import Place
 from .models import reward
+from django.utils import timezone
 
 class profile_form(forms.ModelForm):
     YEAR_CHOICES = [('', 'Please choose a year'), (2025, '2025'),(2026, '2026'),(2027, '2027'),(2028, '2028')]
@@ -49,4 +50,11 @@ class reward_form(forms.ModelForm):
         fields = ["name", "desc", "cost"]
 
 class points_form(forms.Form):
-    campaign_choice = forms.ModelChoiceField(queryset=campaign.objects.all(), label='Campaign')
+    today = timezone.now().date()
+    campaign_choice = forms.ModelChoiceField(
+        queryset=campaign.objects.filter(start_date__lt=today, end_date__gt=today), 
+        label='Campaign',
+        empty_label='Select a Campaign',
+        widget=forms.Select(attrs={'class': 'campaign'})
+    )
+        
