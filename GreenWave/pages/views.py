@@ -173,10 +173,10 @@ def input(request):
         form = points_form(request.POST)
         if form.is_valid():
             campaign_choice = form.cleaned_data['campaign_choice']
-
+            
             points = profile.points
             updated_points = points + campaign_choice.points
-
+            
             profile.points = updated_points
 
             profile.save()
