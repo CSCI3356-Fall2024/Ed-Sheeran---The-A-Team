@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../../static/input.css">
 </head>
 
 {% extends 'base.html'%}
@@ -10,20 +10,21 @@
    {%block content%}
    {% if user.is_authenticated %}
        {% include 'navbar.html' %}
-       <h2 style="text-align: center;">Input</h2>
-       <!--<p style="text-transform:capitalize;" >Welcome, {{ user.username }}!</p>
-       <p style="line-height: 0.5;">You are a {{ group_name }}!</p>-->
-
-       <!-- you should come here from the service page or rewards page, this is were you select service and get points-->
-
-
-       <p style="line-height: 0.5;">Put reward point total here: {{ points }}</p>
+       <h1 style="text-align: center;">Claim Your Points</h1>
+       <div class="points-display">
+            <p><span style="text-transform:capitalize;" >{{ user.username }}, </span>you currently have <span class="points-value">{{ points }} points.</span></p>
+       </div>
 
        <div>
-            <form method="POST">
+            <form method="POST" class="form">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Submit</button>
+                <div class="form-group">
+                    <label for="campaign_choice">Which campaign did you complete?</label>
+                    {{ form.campaign_choice }}
+                </div>
+                <div class="submit"> 
+                    <button type="submit" class="button-color">Claim Points</button>
+                </div>
             </form>
        </div>
    {% else %}

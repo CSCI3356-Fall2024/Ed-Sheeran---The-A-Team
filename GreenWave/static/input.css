@@ -1,6 +1,16 @@
-.heading-div {
+.points-display {
     margin: 0 auto;
+    width: 90%;
     text-align: center;
+    font-size: 18px;
+}
+
+.points-value {
+    font-weight: bold;
+}
+
+.campaign {
+    height: 40px;
 }
 
 .form {
@@ -13,39 +23,15 @@
     background-color: #f4d6a5;
 }
 
-.block {
-    width: 500px;
-}
-
 .form-group{
+    margin: 0 auto;
     font-weight: 600;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 90%;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.fields{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.place-options {
-    font-weight: normal;
-    margin-bottom: -20px;
-}
-
-.submit-form {
+.submit {
     width: 100%;
     text-align: center;
     margin-top: 15px;
