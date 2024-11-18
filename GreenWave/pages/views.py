@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import profile_form, campaign_form, service_form, points_form
 from .models import user_profile, campaign, service, reward
 from django.utils import timezone
+from django.contrib.auth.models import AnonymousUser
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
@@ -17,7 +18,10 @@ def home_view(request, *args, **kwargs):
         group_name = "Regular User"
 
     #this does the points if you need it
-    points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
+    if isinstance(request.user, AnonymousUser):
+        points = 0
+    else:
+        points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
     context = {
         'group_name': group_name,
         'campaigns': campaigns,
@@ -66,7 +70,7 @@ def service_list(request):
         group_name = "Supervisor"
     else:
         group_name = "Regular User"
-    serv = service.objects.all() 
+    serv = service.objects.all()
     return render(request, 'service_list.html', {'services': service, 'group_name': group_name})
 
 def navbar_view(request):
@@ -152,7 +156,7 @@ def exchange(request):
         group_name = "Supervisor"
     else:
         group_name = "Regular User"
-    
+
     points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
     rewards = reward.objects.all()
     context = {
@@ -169,10 +173,10 @@ def input(request):
         form = points_form(request.POST)
         if form.is_valid():
             campaign_choice = form.cleaned_data['campaign_choice']
-            
+
             points = profile.points
             updated_points = points + campaign_choice.points
-            
+
             profile.points = updated_points
 
             profile.save()
