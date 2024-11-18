@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 from pages.views import logout_view
 from pages.views import home_view
 from pages.views import campaign_view
+from pages.views import add_score, leaderboard
 from pages.views import profile_view, rewards, exchange, input
 from pages.views import service_detail_view, service_list_view
 
@@ -41,6 +42,8 @@ urlpatterns = [
     path("campaigns/", campaign_view, name="campaigns"),
     path("exchange/", exchange, name="exchange"),
     path("input/", input, name="input"),
+    path('add-score/', add_score, name='add_score'),
+    path('leaderboard/', leaderboard, name='leaderboard'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

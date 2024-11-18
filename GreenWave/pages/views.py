@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import profile_form, campaign_form, service_form, points_form
-from .models import user_profile, campaign, service, reward
+from .forms import profile_form, campaign_form, service_form, points_form, score_form
+from .models import user_profile, campaign, service, reward, score
 from django.utils import timezone
 from django.contrib.auth.models import AnonymousUser
 
@@ -173,10 +173,10 @@ def input(request):
         form = points_form(request.POST)
         if form.is_valid():
             campaign_choice = form.cleaned_data['campaign_choice']
-            
+
             points = profile.points
             updated_points = points + campaign_choice.points
-            
+
             profile.points = updated_points
 
             profile.save()
@@ -187,3 +187,18 @@ def input(request):
 
     points_value = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
     return render(request, 'input.html', {'form': form, 'points': points_value})
+
+def add_score(request):
+    if request.method == "POST":
+        form = score_form(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('leaderboard')  # Redirect to the leaderboard after submission
+    else:
+        form = score_form()
+    
+    return render(request, 'add_score.html', {'form': form})
+
+def leaderboard(request):
+    scores = leaderboard.objects.order_by('-score')  # Order scores by descending order
+    return render(request, 'leaderboard.html', {'scores': scores})

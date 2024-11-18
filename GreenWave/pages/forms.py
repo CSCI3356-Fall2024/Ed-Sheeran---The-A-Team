@@ -4,6 +4,7 @@ from .models import campaign
 from .models import service
 from .models import Place
 from .models import reward
+from .models import score
 from django.utils import timezone
 
 class profile_form(forms.ModelForm):
@@ -57,4 +58,9 @@ class points_form(forms.Form):
         empty_label='Select a Campaign',
         widget=forms.Select(attrs={'class': 'campaign'})
     )
-        
+
+#use this for leaderboard
+class score_form(forms.ModelForm):
+    class Meta:
+        model = score
+        fields = ['player_name', 'score']

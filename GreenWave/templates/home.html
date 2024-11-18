@@ -24,9 +24,12 @@
                 <h2>Leaderboard</h2>
                 {% if leaderboard %}
                     <ol>
-                        {% for entry in leaderboard %}
+                        {% block leaderboard %}
+                    {% include 'leaderboard.html' %}
+                {% endblock %}
+                        <!-- {% for entry in leaderboard %}
                             <li>{{ entry.username }}: {{ entry.points }} points</li>
-                        {% endfor %}
+                        {% endfor %} -->
                     </ol>
                 {% else %}
                     <p>No leaderboard entries available.</p>
