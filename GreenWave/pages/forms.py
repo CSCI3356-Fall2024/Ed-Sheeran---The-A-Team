@@ -23,7 +23,7 @@ class profile_form(forms.ModelForm):
         #    'major2': forms.Select(attrs={'class': 'form-control'})
         #}
 class campaign_form(forms.ModelForm):
-    VALIDATION_CHOICES = [('Choice 1', 'Choice 1'), ('Choice 2', 'Choice 2')]
+    VALIDATION_CHOICES = [('QR Code', 'Form'), ('QR Code', 'Form')]
     validation = forms.ChoiceField(choices = VALIDATION_CHOICES)
 
     start_date = forms.DateField(
