@@ -48,12 +48,12 @@ class service_form(forms.ModelForm):
 class reward_form(forms.ModelForm):
     class Meta:
         model = reward
-        fields = ["name", "desc", "cost"]
+        fields = ["name", "desc", "cost", "image"]
 
 class points_form(forms.Form):
     today = timezone.now().date()
     campaign_choice = forms.ModelChoiceField(
-        queryset=campaign.objects.filter(start_date__lt=today, end_date__gt=today), 
+        queryset=campaign.objects.filter(start_date__lt=today, end_date__gt=today),
         label='Campaign',
         empty_label='Select a Campaign',
         widget=forms.Select(attrs={'class': 'campaign'})

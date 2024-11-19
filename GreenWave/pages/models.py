@@ -51,7 +51,7 @@ class reward(models.Model): #these are the rewards users can get
 
     def __str__(self):
         return self.name
-    
+
 class score(models.Model):
     player_name = models.CharField(max_length=100)
     score = models.IntegerField()

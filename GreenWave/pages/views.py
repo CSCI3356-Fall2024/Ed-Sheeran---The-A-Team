@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import profile_form, campaign_form, service_form, points_form, score_form
+from .forms import profile_form, campaign_form, service_form, points_form, score_form, reward_form
 from .models import user_profile, campaign, service, reward, score
 from django.utils import timezone
 from django.contrib.auth.models import AnonymousUser
@@ -139,16 +139,30 @@ def service_list_view(request):
 def rewards(request):
     if request.user.groups.filter(name='Supervisor').exists():
         group_name = "Supervisor"
+        all_rewards = reward.objects.all()
+
+        if request.method == 'POST':
+            form = reward_form(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('rewards')
+        else:
+            form = reward_form()
+        context = {
+            'group_name': group_name,
+            'all_rewards': all_rewards,
+            'form': form,
+        }
     else:
         group_name = "Regular User"
+        points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
+        context = {
+            'group_name': group_name,
+            'current_points': 75, #this is just points so we could remove
+            'next_level_threshold': 1000,
+            "points" : points
+        }
     # New, trying to make Bar
-    points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
-    context = {
-        'group_name': group_name,
-        'current_points': 75, #this is just points so we could remove
-        'next_level_threshold': 1000,
-        "points" : points
-    }
     return render(request, "rewards.html", context)
 
 def exchange(request):
@@ -196,7 +210,7 @@ def add_score(request):
             return redirect('leaderboard')  # Redirect to the leaderboard after submission
     else:
         form = score_form()
-    
+
     return render(request, 'add_score.html', {'form': form})
 
 def leaderboard(request):
