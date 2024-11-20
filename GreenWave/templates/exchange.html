@@ -13,7 +13,7 @@
 		<ul class="services-list">
 			{% for reward in rewards %}
 			<li class="service-item">
-            <a href="{% url 'service_detail' reward.id %}" class="service-box"> <!-- currently linking back to the services, not the reward-->
+            <a href="{% url 'exchange_detail' reward.id %}" class="service-box"> <!-- currently linking back to the services, not the reward-->
 					<div class="service-box">
 						<div class="service-image">
 							{% if reward.image %}
@@ -24,8 +24,8 @@
 						</div>
 						<div class="service-content">
 							<p class="service-name">{{ reward.name }}</p>
-							<p class="short-description">{{ reward.desc }}</p> 
-                            <p class="short-description">Price: {{ reward.cost }}</p>
+							<p class="short-description">{{ reward.desc }}</p>
+              <p class="short-description">Price: {{ reward.cost }}</p>
 						</div>
 					</div>
 				</a>

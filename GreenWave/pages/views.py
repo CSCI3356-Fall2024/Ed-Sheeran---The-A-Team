@@ -180,6 +180,19 @@ def exchange(request):
     }
     return render(request, "exchange.html", context)
 
+def exchange_detail_view(request, id):
+    if request.user.groups.filter(name='Supervisor').exists():
+        group_name = "Supervisor"
+    else:
+        group_name = "Regular User"
+
+    exchange_single = get_object_or_404(reward, id=id)
+    context = {
+        'exchange': exchange_single,
+        'group_name': group_name,
+    }
+    return render(request, "exchange_detail.html", context)
+
 def input(request):
     profile = user_profile.objects.get(user=request.user)
 
