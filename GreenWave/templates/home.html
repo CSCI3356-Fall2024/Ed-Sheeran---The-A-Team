@@ -36,6 +36,15 @@
     .campaign-slider li br {
         margin: 0;  
 }
+
+    .points {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-weight: 500;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 1.5em;
+    }
     </style>
      
 </head>
@@ -54,10 +63,11 @@
         {% include 'navbar.html' %}
         <h2 style="text-align: center;">Home</h2>
         <h1 style="text-transform:capitalize;" >Welcome, {{ user.username }}!</h1>
-        <p style="line-height: 0.5;">You are a {{ group_name }}!</p>
+        <!--<p style="line-height: 0.5;">You are a {{ group_name }}!</p>-->
 
-
-        <p style="line-height: 0.5;">Put reward point total here: {{ points }}</p>
+        <div class="points">
+            <p style="line-height: 0.5;">Your current point total: <b>{{ points }}</b></p>
+        </div>
 
 
         <div class="container"> <!--Big box around both-->
