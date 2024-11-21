@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import profile_form, campaign_form, service_form, points_form, score_form, reward_form
+from .forms import profile_form, campaign_form, service_form, points_form, score_form, reward_form, exchange_points_form
 from .models import user_profile, campaign, service, reward, score
 from django.utils import timezone
 from django.contrib.auth.models import AnonymousUser
@@ -58,7 +58,7 @@ def home_view(request, *args, **kwargs):
             'description': 'Collect and recycle plastic bottles in the community. Help reduce waste!',
         }
     ]
-    
+
     fake_leaderboard = [
         {'rank': 1, 'username': 'Ike', 'points': 350},
         {'rank': 2, 'username': 'Hannah', 'points': 280},
@@ -66,7 +66,7 @@ def home_view(request, *args, **kwargs):
         {'rank': 4, 'username': 'Matt', 'points': 180},
         {'rank': 5, 'username': 'Luke', 'points': 150}
     ]
-    
+
     context = {
         'group_name': group_name,
         'campaigns': fake_campaigns,  # Use fake campaigns for now
@@ -233,6 +233,16 @@ def exchange_detail_view(request, id):
         group_name = "Regular User"
 
     exchange_single = get_object_or_404(reward, id=id)
+    if request.method == 'POST':
+        profile = user_profile.objects.get(user=request.user)
+        points = profile.points
+        if points >= exchange_single.cost:
+            profile.points -= exchange_single.cost
+            profile.save()
+            return redirect('/rewards')
+        #else:
+            #This is when the user doesn't have enough points for the exchange
+
     context = {
         'exchange': exchange_single,
         'group_name': group_name,

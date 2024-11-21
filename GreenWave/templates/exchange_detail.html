@@ -21,7 +21,15 @@
             <p>{{ exchange.desc }}</p>
             <h2>Reward Points</h2>
             <p>{{ exchange.cost }}</p>
-            <a href="{% url 'rewards' %}" class="btn btn-primary-color">Click to Exchange for reward!</a>
+            <!-- <a href="{% url 'rewards' %}" class="btn btn-primary-color">Click to Exchange for reward!</a> -->
+            <div>
+                 <form method="POST" class="form">
+                     {% csrf_token %}
+                     <div class="submit">
+                         <button type="submit" class="btn btn-primary-color">Click to Exchange for reward!</button>
+                     </div>
+                 </form>
+            </div>
         </div>
         <div class="image-section">
             {% if exchange.image %}
