@@ -18,14 +18,60 @@ def home_view(request, *args, **kwargs):
         group_name = "Regular User"
 
     #this does the points if you need it
+
+    #if isinstance(request.user, AnonymousUser):
+    #    points = 0
+    #else:
+    #    points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
+    #context = {
+    #    'group_name': group_name,
+    #    'campaigns': campaigns,
+    #    'points' : points,
+    #}
     if isinstance(request.user, AnonymousUser):
         points = 0
     else:
         points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
+        fake_campaigns = [
+        {
+            'name': 'Clean the Beach',
+            'start_date': today.strftime('%Y-%m-%d'),
+            'end_date': (today + timezone.timedelta(days=7)).strftime('%Y-%m-%d'),
+            'points': 100,
+            'places': ['Beach A', 'Beach B'],
+            'description': 'Join us to clean up the local beach and earn points!',
+        },
+        {
+            'name': 'Plant Trees in Park',
+            'start_date': today.strftime('%Y-%m-%d'),
+            'end_date': (today + timezone.timedelta(days=14)).strftime('%Y-%m-%d'),
+            'points': 150,
+            'places': ['Hillside', 'Coro'],
+            'description': 'Help plant trees in the city parks to make the environment greener!',
+        },
+        {
+            'name': 'Recycle Plastic Bottles',
+            'start_date': today.strftime('%Y-%m-%d'),
+            'end_date': (today + timezone.timedelta(days=10)).strftime('%Y-%m-%d'),
+            'points': 50,
+            'places': ['Community Center', 'Library'],
+            'description': 'Collect and recycle plastic bottles in the community. Help reduce waste!',
+        }
+    ]
+    
+    fake_leaderboard = [
+        {'rank': 1, 'username': 'Ike', 'points': 350},
+        {'rank': 2, 'username': 'Hannah', 'points': 280},
+        {'rank': 3, 'username': 'Nef', 'points': 210},
+        {'rank': 4, 'username': 'Matt', 'points': 180},
+        {'rank': 5, 'username': 'Luke', 'points': 150}
+    ]
+    
     context = {
         'group_name': group_name,
-        'campaigns': campaigns,
-        'points' : points,
+        'campaigns': fake_campaigns,  # Use fake campaigns for now
+        'points': points,
+        'leaderboard': fake_leaderboard,  # Add fake leaderboard
     }
 
     return render(request, 'home.html', context)

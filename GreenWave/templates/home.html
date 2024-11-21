@@ -1,8 +1,50 @@
 <head>
+
      <link rel="stylesheet" href="../../static/home.css">
+    <style>
+    
+    h1 {
+        text-align: center;
+        color: #e9877e;
+        margin-top: 30px;
+        font-size: 2em;
+     }
+
+    .rectangle-container {
+        background-color: #f4d6a5;
+        padding: 20px;
+        width: 45%;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .campaign-slider {
+        max-height: 300px;
+        overflow-y: auto;
+        padding-right: 5px;
+    }
+    
+    .campaign-slider h3 {
+        margin-bottom: 5px;  
+    }
+
+    .campaign-slider li {
+        margin-bottom: 15px;
+        line-height: 1.4;     
+    }
+
+    .campaign-slider li br {
+        margin: 0;  
+}
+    </style>
+     
 </head>
 
+
+
 {% extends 'base.html'%}
+
+
 
 <div>
     {% block title %}GreenWave Home{% endblock %}
@@ -11,7 +53,7 @@
     {% if user.is_authenticated %}
         {% include 'navbar.html' %}
         <h2 style="text-align: center;">Home</h2>
-        <p style="text-transform:capitalize;" >Welcome, {{ user.username }}!</p>
+        <h1 style="text-transform:capitalize;" >Welcome, {{ user.username }}!</h1>
         <p style="line-height: 0.5;">You are a {{ group_name }}!</p>
 
 
@@ -21,15 +63,16 @@
         <div class="container"> <!--Big box around both-->
             <!--Leaderboard-->
             <div class="rectangle-container">
-                <h2>Leaderboard</h2>
+                
                 {% if leaderboard %}
                     <ol>
                         {% block leaderboard %}
-                    {% include 'leaderboard.html' %}
-                {% endblock %}
-                        <!-- {% for entry in leaderboard %}
-                            <li>{{ entry.username }}: {{ entry.points }} points</li>
-                        {% endfor %} -->
+                     {% include 'leaderboard.html' %}
+                
+                     <!--   {% for entry in leaderboard %}
+                            <li>Rank: {{entry.rank }},  {{ entry.username }}: {{ entry.points }} points</li>
+                        {% endfor %}
+                        {% endblock %} -->
                     </ol>
                 {% else %}
                     <p>No leaderboard entries available.</p>
@@ -40,11 +83,14 @@
             <!--Campaigns-->
             <div class="rectangle-container">
                   <h2>Current Campaigns</h2>
+                  <div class="campaign-slider">
+
+                  
                 {% if campaigns %}
                     <ul>
                         {% for campaign in campaigns %}
                             <li>
-                                <h3>{{ campaign.name }}</h3><br>
+                                <h3>{{ campaign.name }}</h3>
                                 Start Date: {{ campaign.start_date }}<br>
                                 End Date: {{ campaign.end_date }}<br>
                                 Points: {{ campaign.points }}<br>
@@ -60,6 +106,7 @@
                 {% else %}
                     <p>No current campaigns available.</p>
                 {% endif %}
+            </div>
             </div>
         </div>
 

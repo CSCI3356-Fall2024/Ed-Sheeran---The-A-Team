@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<!-- <head>
     <title>Leaderboard</title>
 </head>
 <body>
@@ -11,7 +11,7 @@
                 <th>Rank</th>
                 <th>Player Name</th>
                 <th>Score</th>
-                <th>Date</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -25,5 +25,96 @@
             {% endfor %}
         </tbody>
     </table>
+</body> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="path/to/your/styles.css">
+    <style>
+
+
+        .leaderboard-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-top: 10px;
+            font-size: 2em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4d6a5;
+            color: white;
+            font-size: 1.1em;
+        }
+
+        td {
+            font-size: 1em;
+            color: #555;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e9f7e7;
+        }
+
+        .rank {
+            font-weight: bold;
+            color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="leaderboard-container">
+        <h2>Leaderboard</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player Name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in leaderboard %}
+                <tr>
+                    <td class="rank">{{ entry.rank }}</td>
+                    <td>{{ entry.username }}</td>
+                    <td>{{ entry.points }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 </body>
+
+
 </html>
