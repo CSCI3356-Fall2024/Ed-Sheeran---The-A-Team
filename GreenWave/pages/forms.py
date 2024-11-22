@@ -63,7 +63,7 @@ class points_form(forms.Form):
 class score_form(forms.ModelForm):
     class Meta:
         model = score
-        fields = ['player_name', 'score']
+        fields = ['username', 'score']
 
 #form for exchange button
 class exchange_points_form(forms.ModelForm):

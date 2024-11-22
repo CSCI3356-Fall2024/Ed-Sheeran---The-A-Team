@@ -5,12 +5,14 @@ from .forms import profile_form, campaign_form, service_form, points_form, score
 from .models import user_profile, campaign, service, reward, score
 from django.utils import timezone
 from django.contrib.auth.models import AnonymousUser
+from django.views.generic import ListView
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
     print(args,kwargs)
     print(request.user)
     today = timezone.now().date()
+    leaderboard = user_profile.objects.order_by('-points')[:10]  # Top 10 users
     campaigns = campaign.objects.filter(start_date__lt=today, end_date__gt=today)
     if request.user.groups.filter(name='Supervisor').exists():
         group_name = "Supervisor"
@@ -59,19 +61,24 @@ def home_view(request, *args, **kwargs):
         }
     ]
 
-    fake_leaderboard = [
-        {'rank': 1, 'username': 'Ike', 'points': 350},
-        {'rank': 2, 'username': 'Hannah', 'points': 280},
-        {'rank': 3, 'username': 'Nef', 'points': 210},
-        {'rank': 4, 'username': 'Matt', 'points': 180},
-        {'rank': 5, 'username': 'Luke', 'points': 150}
-    ]
+    # fake_leaderboard = [
+    #     {'rank': 1, 'username': 'Ike', 'points': 500 },
+    #     {'rank': 2, 'username': 'Hannah', 'points': 450},
+    #     {'rank': 3, 'username': 'Neff', 'points': 300},
+    #     {'rank': 4, 'username': 'Matt', 'points': 120},
+    #     {'rank': 5, 'username': 'Luke', 'points': 90}
+    # ]
 """
     context = {
         'group_name': group_name,
-        'campaigns': campaigns,  # Use fake campaigns for now
-        'points': points,
-       # 'leaderboard': fake_leaderboard,  # Add fake leaderboard
+        'campaigns': campaigns,
+        'leaderboard': [
+            {'rank': index + 1, 'username': entry.user.username, 'points': entry.points}
+            for index, entry in enumerate(leaderboard)
+        ],
+        'user': request.user,  # Add user details for personalization
+        'points': getattr(request.user.userprofile, 'points', 0) if request.user.is_authenticated else 0,
+        # Include other data if necessary
     }
 
     return render(request, 'home.html', context)
@@ -282,6 +289,16 @@ def add_score(request):
 
     return render(request, 'add_score.html', {'form': form})
 
-def leaderboard(request):
-    scores = leaderboard.objects.order_by('-score')  # Order scores by descending order
-    return render(request, 'leaderboard.html', {'scores': scores})
+
+
+def leaderboard_view(request):
+    # Fetch all users and order them by points descending
+    leaderboard = user_profile.objects.order_by('-points')[:10]  # Top 10 users
+
+    context = {
+        'leaderboard': [
+            {'rank': index + 1, 'username': entry.user.username, 'points': entry.points}
+            for index, entry in enumerate(leaderboard)
+        ]
+    }
+    return render(request, 'leaderboard.html', context)

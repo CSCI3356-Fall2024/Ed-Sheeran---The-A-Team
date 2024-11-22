@@ -53,9 +53,9 @@ class reward(models.Model): #these are the rewards users can get
         return self.name
 
 class score(models.Model):
-    player_name = models.CharField(max_length=100)
+    username = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     score = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.player_name} - {self.score}"
+        return f"{self.username} - {self.score}"
