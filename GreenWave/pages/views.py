@@ -32,7 +32,7 @@ def home_view(request, *args, **kwargs):
         points = 0
     else:
         points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
-        fake_campaigns = [
+        """fake_campaigns = [
         {
             'name': 'Clean the Beach',
             'start_date': today.strftime('%Y-%m-%d'),
@@ -66,12 +66,12 @@ def home_view(request, *args, **kwargs):
         {'rank': 4, 'username': 'Matt', 'points': 180},
         {'rank': 5, 'username': 'Luke', 'points': 150}
     ]
-
+"""
     context = {
         'group_name': group_name,
-        'campaigns': fake_campaigns,  # Use fake campaigns for now
+        'campaigns': campaigns,  # Use fake campaigns for now
         'points': points,
-        'leaderboard': fake_leaderboard,  # Add fake leaderboard
+       # 'leaderboard': fake_leaderboard,  # Add fake leaderboard
     }
 
     return render(request, 'home.html', context)
