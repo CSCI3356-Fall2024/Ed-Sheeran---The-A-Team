@@ -291,7 +291,7 @@ def add_score(request):
     return render(request, 'add_score.html', {'form': form})
 
 
-
+"""
 def leaderboard_view(request):
     # Fetch all users and order them by points descending
     leaderboard = user_profile.objects.order_by('-points')[:10]  # Top 10 users
@@ -299,6 +299,26 @@ def leaderboard_view(request):
     context = {
         'leaderboard': [
             {'rank': index + 1, 'username': entry.user.username, 'points': entry.points}
+            for index, entry in enumerate(leaderboard)
+        ]
+    }
+    return render(request, 'leaderboard.html', context)"""
+
+def leaderboard_view(request):
+    leaderboard = user_profile.objects.order_by('-points')[:10] 
+    profile = user_profile.objects.get(user=request.user)
+    
+    max_points = leaderboard[0].points if leaderboard else 1 
+    percents = (profile.points / max_points) * 100
+
+    context = {
+        'leaderboard': [
+            {
+                'rank': index + 1, 
+                'username': entry.user.username, 
+                'points': entry.points,
+                #'points_percentage': percents
+            }
             for index, entry in enumerate(leaderboard)
         ]
     }

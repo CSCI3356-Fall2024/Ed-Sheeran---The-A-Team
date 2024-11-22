@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
 <!-- <head>
     <title>Leaderboard</title>
 </head>
@@ -27,17 +28,159 @@
     </table>
 </body> -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
-    <link rel="stylesheet" href="path/to/your/styles.css">
+    <!--<link rel="stylesheet" href="path/to/your/styles.css"> -->
     <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f5f5f5;
+        }
 
+        * {
+            box-sizing: border-box;
+        }
 
-        .leaderboard-container {
+        .Leaderboard {
+            padding: 40px 20px;
+            margin: auto;
+            max-width: 800px;
+        }
+
+        .leaderboard-header {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .leader-wrap {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .leader {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            animation-name: revealLeaders;
+            animation-duration: .4s;
+            animation-fill-mode: both;
+            animation-timing-function: ease-in-out;
+        }
+
+        .leader-rank {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #4caf50;
+            width: 40px;
+            text-align: center;
+        }
+
+        .leader-name {
+            flex: 1;
+            margin: 0 20px;
+            font-weight: 500;
+        }
+
+        .leader-score {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: #666;
+            margin-right: 20px;
+        }
+
+        .leader-bar {
+            position: relative;
+            margin-top: 8px;
+            height: 4px;
+            background-color: #e9ecef;
+            border-radius: 2px;
+            overflow: hidden;
+            width: 200px; 
+        }
+
+        .bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background-color: #4caf50;
+            border-radius: 2px;
+            transition: width 0.6s ease-out;
+            min-width: 2%; /* Ensure very small percentages are still visible */
+        }
+
+        @keyframes revealLeaders {
+            from {
+                transform: translateX(-200px);
+                opacity: 0;
+            }
+            to {
+                transform: none;
+                opacity: 1;
+            }
+        }
+
+        @keyframes barLoad {
+            from {
+                transform: scaleX(0);
+            }
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        .leader:nth-child(1) {
+            background-color: #fff3e0;
+        }
+
+        .leader:nth-child(2) {
+            background-color: #fafafa;
+        }
+
+        .leader:nth-child(3) {
+            background-color: #fff8e1;
+        }
+
+        .leader:nth-child(1) .leader-rank {
+            color: #f57c00;
+        }
+
+        .leader:nth-child(2) .leader-rank {
+            color: #616161;
+        }
+
+        .leader:nth-child(3) .leader-rank {
+            color: #ffa000;
+        }
+
+        
+        .delay-1 { animation-delay: 100ms; }
+        .delay-2 { animation-delay: 200ms; }
+        .delay-3 { animation-delay: 300ms; }
+        .delay-4 { animation-delay: 400ms; }
+        .delay-5 { animation-delay: 500ms; }
+        .delay-6 { animation-delay: 600ms; }
+        .delay-7 { animation-delay: 700ms; }
+        .delay-8 { animation-delay: 800ms; }
+        .delay-9 { animation-delay: 900ms; }
+        .delay-10 { animation-delay: 1000ms; }
+    </style>
+    
+       <!--
+       .leaderboard-container {
             width: 100%;
             max-width: 1000px;
             margin: 0 auto;
@@ -88,7 +231,8 @@
             font-weight: bold;
             color: #4caf50;
         }
-    </style>
+    </style> --> 
+<!--
 </head>
 <body>
 
@@ -117,4 +261,26 @@
 </body>
 
 
+</html> -->
+       
+</head>
+<body>
+    <div class="Leaderboard">
+        <h2 class="leaderboard-header">Leaderboard</h2>
+        <div class="leader-wrap">
+            {% for entry in leaderboard %}
+            <div class="leader delay-{{ forloop.counter }}">
+                <div class="leader-rank">{{ entry.rank }}</div>
+                <div class="leader-name">{{ entry.username }}</div>
+                <div class="leader-score">{{ entry.points }} points</div>
+                <!--<div class="leader-bar">
+                    <div class="bar" 
+                         style="width: {{ entry.points_percentage|floatformat:1 }}%"
+                         title="{{ entry.points_percentage|floatformat:1 }}% of top score">
+                </div> -->
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
 </html>
