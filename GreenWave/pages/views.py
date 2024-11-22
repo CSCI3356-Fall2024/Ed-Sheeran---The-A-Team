@@ -72,6 +72,7 @@ def home_view(request, *args, **kwargs):
     context = {
         'group_name': group_name,
         'campaigns': campaigns,
+        'points1': points,
         'leaderboard': [
             {'rank': index + 1, 'username': entry.user.username, 'points': entry.points}
             for index, entry in enumerate(leaderboard)
