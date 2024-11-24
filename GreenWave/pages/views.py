@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import profile_form, campaign_form, service_form, points_form, score_form, reward_form, exchange_points_form
-from .models import user_profile, campaign, service, reward, score
+from .models import user_profile, campaign, service, reward, score, transaction
 from django.utils import timezone
 from django.contrib.auth.models import AnonymousUser
 from django.views.generic import ListView

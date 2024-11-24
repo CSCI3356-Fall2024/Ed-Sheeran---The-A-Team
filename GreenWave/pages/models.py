@@ -59,3 +59,16 @@ class score(models.Model):
 
     def __str__(self):
         return f"{self.username} - {self.score}"
+    
+class transaction(models.Model): #think this works for transactions, trying to implement a model for transaction history
+    user_profile = models.ForeignKey(user_profile, related_name="trans", on_delete=models.CASCADE)
+    points = models.IntegerField() 
+    date = models.DateTimeField(auto_now_add=True)
+    place = models.CharField(max_length=255) 
+    description = models.CharField(max_length=500, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.user_profile.user.username} - {self.points} points at {self.place} on {self.date} for {self.description}"
+
+    class Meta:
+        ordering = ['-date']
