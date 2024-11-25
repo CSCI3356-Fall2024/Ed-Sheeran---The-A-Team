@@ -203,7 +203,7 @@
 
               <div class="level-indicators">
 
-                  <span>Next Level: X Points</span>
+                  <span>Next Level: {{ next_level_threshold }} Points</span>
               </div>
 
 
@@ -212,10 +212,9 @@
 
           </div>
 
-          <!--History-->
+          <!--History
           <div class="transaction-history">
               <h3>TRANSACTION HISTORY</h3>
-              <!-- Example Transactions-->
               <div class="transaction-history-slider">
                   <div class="transaction-date">OCTOBER 2024</div>
                   <div class="transaction-item">
@@ -247,7 +246,39 @@
                       <span class="transaction-location">Hillside Cafe</span>
                   </div>
               </div>
-          </div>
+          </div>-->
+
+
+
+
+          <!--I believe this works except we need to add services and test, I just can't access input page so can't get points
+          We also need to add a transaction every time a service is redeemed / inputted-->
+        <div class="transaction-history">
+            <h3>TRANSACTION HISTORY</h3>
+            <div class="transaction-history-slider">
+                {% for transaction in transactions %}
+                    <div class="transaction-date">{{ transaction.date|date:"F Y" }}</div>
+                    <div class="transaction-item">
+                        <span class="transaction-date-info">{{ transaction.date|date:"m/d/y" }}</span>
+                        <span class="transaction-initiative">{{ transaction.description }}</span>
+                        <span class="transaction-points">
+                            {% if transaction.points >= 0 %}
+                                +{{ transaction.points }}
+                            {% else %}
+                                {{ transaction.points }}
+                            {% endif %}
+                            <span class="total-points">{{ points }}</span>
+                        </span>
+                        <span class="transaction-location">{{ transaction.place }}</span>
+                    </div>
+                {% empty %}
+                    <p>No transactions yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+
+
           <div class = "bottom-padding">
             <p></p>
           </div>

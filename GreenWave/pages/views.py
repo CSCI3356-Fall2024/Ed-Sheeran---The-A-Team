@@ -210,11 +210,12 @@ def rewards(request):
     else:
         group_name = "Regular User"
         points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
+        transactions = transaction.objects.filter(user_profile__user=request.user).order_by('-date')
         context = {
             'group_name': group_name,
-            'current_points': 75, #this is just points so we could remove
             'next_level_threshold': 1000,
-            "points" : points
+            "points" : points,
+            "transactions" : transactions,
         }
     # New, trying to make Bar
     return render(request, "rewards.html", context)
@@ -246,6 +247,16 @@ def exchange_detail_view(request, id):
         points = profile.points
         if points >= exchange_single.cost:
             profile.points -= exchange_single.cost
+
+            #instance to record the exchange
+            trans = transaction(
+                user_profile=profile, #I think this works but mine never did without so idk, someone should test sorry
+                points=exchange_single.cost,
+                place=exchange_single.name,  #havent thought this through yet
+                description=f"Exchanged for {exchange_single.name} reward"
+            )
+            trans.save()
+
             profile.save()
             return redirect('/rewards')
         #else:
