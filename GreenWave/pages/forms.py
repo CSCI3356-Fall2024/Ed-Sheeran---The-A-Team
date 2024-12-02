@@ -77,9 +77,9 @@ class points_form(forms.Form):
         choices = []
         today = timezone.now().date()
         for obj1 in campaign.objects.filter(start_date__lt=today, end_date__gt=today):
-            choices.append((obj1.points, obj1.name))
+            choices.append((f"{obj1.points}-{obj1.name}", obj1.name))
         for obj2 in service.objects.all():
-            choices.append((obj2.points_per_use, obj2.name))
+            choices.append((f"{obj2.points_per_use}-{obj2.name}", obj2.name))
         self.fields['select'].choices = choices
 
 #use this for leaderboard

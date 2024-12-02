@@ -262,6 +262,7 @@ def exchange_detail_view(request, id):
             trans = transaction(
                 user_profile=profile, #I think this works but mine never did without so idk, someone should test sorry
                 points=-exchange_single.cost,
+                new_total = profile.points,
                 place=exchange_single.name,  #havent thought this through yet
                 description=f"Exchanged for {exchange_single.name} reward"
             )
@@ -286,11 +287,22 @@ def input(request):
         form = points_form(request.POST)
         if form.is_valid():
             select = form.cleaned_data['select']
-            select_points = int(select)
+            #name = form.get_select_display()
+            select_str, name = select.split('-')
+            select_points = int(select_str)
             points = profile.points
             updated_points = points + select_points
 
             profile.points = updated_points
+
+            trans = transaction(
+                user_profile=profile, #I think this works but mine never did without so idk, someone should test sorry
+                points=select_points,
+                new_total = profile.points,
+                place=name,  #havent thought this through yet
+                description=f"Completed {name} campaign"
+            )
+            trans.save()
 
             profile.save()
 

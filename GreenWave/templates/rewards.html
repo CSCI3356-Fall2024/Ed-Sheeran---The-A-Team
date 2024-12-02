@@ -267,7 +267,8 @@
                             {% else %}
                                 {{ transaction.points }}
                             {% endif %}
-                            <span class="total-points">{{ points }}</span>
+                            <!--<span class="total-points">{{ points }}</span>-->
+                            <span class = "total-points">{{ transaction.new_total }} </span>
                         </span>
                         <span class="transaction-location">{{ transaction.place }}</span>
                     </div>
@@ -298,7 +299,7 @@
                         <p>Cost: {{ reward.cost }} points</p>
                         <p>Start Date: {{ reward.start_date }}</p>
                         <p>End Date: {{ reward.end_date }}</p>
-                        <p>Available Locations: 
+                        <p>Available Locations:
                         {% for place in reward.places.all %}
                                 {{ place.name }}{% if not forloop.last %}, {% endif %}
                         {% endfor %}</p>
