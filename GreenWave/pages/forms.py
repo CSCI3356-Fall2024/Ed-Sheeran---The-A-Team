@@ -48,26 +48,39 @@ class service_form(forms.ModelForm):
 class reward_form(forms.ModelForm):
     PLACE_CHOICES = [('1', 'Lower Live'), ('2', 'Stuart Dining Hall'), ('3', 'Carney Dining Hall'), ('4', 'Eagles Nest'), ('5', 'Hillside Cafe'), ('6', 'The Rat')]
     places = forms.ModelMultipleChoiceField(queryset=Place.objects.all(), widget=forms.CheckboxSelectMultiple)
-    
+
     start_date = forms.DateField(
         widget=forms.DateInput(attrs={'placeholder': 'MM/DD/YYYY'})
     )
     end_date = forms.DateField(
         widget=forms.DateInput(attrs={'placeholder': 'MM/DD/YYYY'})
     )
-    
+
     class Meta:
         model = reward
         fields = ["name", "desc", "cost", "start_date", "end_date", "image", "places"]
 
+#class points_form(forms.Form):
+#    today = timezone.now().date()
+#    campaign_choice = forms.ModelChoiceField(
+#        queryset=campaign.objects.filter(start_date__lt=today, end_date__gt=today),
+#        label='Campaign',
+#        empty_label='Select a Campaign',
+#        widget=forms.Select(attrs={'class': 'campaign'})
+#    )
+
 class points_form(forms.Form):
-    today = timezone.now().date()
-    campaign_choice = forms.ModelChoiceField(
-        queryset=campaign.objects.filter(start_date__lt=today, end_date__gt=today),
-        label='Campaign',
-        empty_label='Select a Campaign',
-        widget=forms.Select(attrs={'class': 'campaign'})
-    )
+    select = forms.ChoiceField(choices=[])
+
+    def __init__(self, *args, **kwargs):
+        super(points_form, self).__init__(*args, **kwargs)
+        choices = []
+        today = timezone.now().date()
+        for obj1 in campaign.objects.filter(start_date__lt=today, end_date__gt=today):
+            choices.append((obj1.points, obj1.name))
+        for obj2 in service.objects.all():
+            choices.append((obj2.points_per_use, obj2.name))
+        self.fields['select'].choices = choices
 
 #use this for leaderboard
 class score_form(forms.ModelForm):

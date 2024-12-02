@@ -233,7 +233,7 @@ def exchange(request):
 
     today = timezone.now().date()
     rewards = reward.objects.filter(start_date__lt=today, end_date__gt=today)
-    
+
     context = {
         'group_name': group_name,
         "points" : points,
@@ -280,10 +280,10 @@ def input(request):
     if request.method == 'POST':
         form = points_form(request.POST)
         if form.is_valid():
-            campaign_choice = form.cleaned_data['campaign_choice']
-
+            select = form.cleaned_data['select']
+            select_points = int(select)
             points = profile.points
-            updated_points = points + campaign_choice.points
+            updated_points = points + select_points
 
             profile.points = updated_points
 
@@ -322,17 +322,17 @@ def leaderboard_view(request):
     return render(request, 'leaderboard.html', context)"""
 
 def leaderboard_view(request):
-    leaderboard = user_profile.objects.order_by('-points')[:10] 
+    leaderboard = user_profile.objects.order_by('-points')[:10]
     profile = user_profile.objects.get(user=request.user)
-    
-    max_points = leaderboard[0].points if leaderboard else 1 
+
+    max_points = leaderboard[0].points if leaderboard else 1
     percents = (profile.points / max_points) * 100
 
     context = {
         'leaderboard': [
             {
-                'rank': index + 1, 
-                'username': entry.user.username, 
+                'rank': index + 1,
+                'username': entry.user.username,
                 'points': entry.points,
                 #'points_percentage': percents
             }
