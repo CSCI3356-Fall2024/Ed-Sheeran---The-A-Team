@@ -49,6 +49,8 @@ class reward(models.Model): #these are the rewards users can get
     desc = models.CharField(max_length = 100)
     cost = models.IntegerField()
     places = models.ManyToManyField(Place)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return self.name

@@ -230,7 +230,10 @@ def exchange(request):
         group_name = "Regular User"
 
     points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
-    rewards = reward.objects.all()
+
+    today = timezone.now().date()
+    rewards = reward.objects.filter(start_date__lt=today, end_date__gt=today)
+    
     context = {
         'group_name': group_name,
         "points" : points,

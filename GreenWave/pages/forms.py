@@ -48,9 +48,17 @@ class service_form(forms.ModelForm):
 class reward_form(forms.ModelForm):
     PLACE_CHOICES = [('1', 'Lower Live'), ('2', 'Stuart Dining Hall'), ('3', 'Carney Dining Hall'), ('4', 'Eagles Nest'), ('5', 'Hillside Cafe'), ('6', 'The Rat')]
     places = forms.ModelMultipleChoiceField(queryset=Place.objects.all(), widget=forms.CheckboxSelectMultiple)
+    
+    start_date = forms.DateField(
+        widget=forms.DateInput(attrs={'placeholder': 'MM/DD/YYYY'})
+    )
+    end_date = forms.DateField(
+        widget=forms.DateInput(attrs={'placeholder': 'MM/DD/YYYY'})
+    )
+    
     class Meta:
         model = reward
-        fields = ["name", "desc", "cost", "image", "places"]
+        fields = ["name", "desc", "cost", "start_date", "end_date", "image", "places"]
 
 class points_form(forms.Form):
     today = timezone.now().date()

@@ -24,6 +24,7 @@
                     {{ place.name }}{% if not forloop.last %}, {% endif %}
                 {% endfor %}
             </p>
+            <p>Available Until: {{ exchange.end_date }}</p>
             <h2>Reward Points</h2>
             <p>{{ exchange.cost }}</p>
             <!-- <a href="{% url 'rewards' %}" class="btn btn-primary-color">Click to Exchange for reward!</a> -->

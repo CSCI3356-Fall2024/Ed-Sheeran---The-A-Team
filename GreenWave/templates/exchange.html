@@ -30,6 +30,7 @@
 							{% for place in reward.places.all %}
                                 {{ place.name }}{% if not forloop.last %}, {% endif %}
                         	{% endfor %}</p>
+							<p class="short-description">Available Until: {{ reward.end_date }}</p>
 						</div>
 					</div>
 				</a>
