@@ -261,7 +261,7 @@ def exchange_detail_view(request, id):
             #instance to record the exchange
             trans = transaction(
                 user_profile=profile, #I think this works but mine never did without so idk, someone should test sorry
-                points=exchange_single.cost,
+                points=-exchange_single.cost,
                 place=exchange_single.name,  #havent thought this through yet
                 description=f"Exchanged for {exchange_single.name} reward"
             )
