@@ -296,6 +296,10 @@
                         <h3>{{ reward.name }}</h3>
                         <p>{{ reward.desc }}</p>
                         <p>Cost: {{ reward.cost }} points</p>
+                        <p>Available Locations: 
+                        {% for place in reward.places.all %}
+                                {{ place.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}</p>
                     </li>
                 {% empty %}
                     <p>No rewards available yet.</p>
@@ -321,6 +325,10 @@
                 <div class="form-group">
                     <label>Description: </label>
                     {{ form.desc }}
+                </div>
+                <div class="form-group">
+                    <label>Locations: </label>
+                    {{ form.places }}
                 </div>
                 <button type="submit" class="btn btn-primary-color">Create Reward</button>
             </form>

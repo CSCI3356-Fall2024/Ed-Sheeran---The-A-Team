@@ -25,7 +25,11 @@
 						<div class="service-content">
 							<p class="service-name">{{ reward.name }}</p>
 							<p class="short-description">{{ reward.desc }}</p>
-              <p class="short-description">Price: {{ reward.cost }}</p>
+              				<p class="short-description">Price: {{ reward.cost }}</p>
+							<p class="short-description">Available Locations: 
+							{% for place in reward.places.all %}
+                                {{ place.name }}{% if not forloop.last %}, {% endif %}
+                        	{% endfor %}</p>
 						</div>
 					</div>
 				</a>

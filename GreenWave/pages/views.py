@@ -198,7 +198,10 @@ def rewards(request):
         if request.method == 'POST':
             form = reward_form(request.POST, request.FILES)
             if form.is_valid():
-                form.save()
+                reward_object = form.save(commit=False)
+                reward_object.save()
+                reward_object.places.set(form.cleaned_data['places'])
+                reward_object.save()
                 return redirect('rewards')
         else:
             form = reward_form()
