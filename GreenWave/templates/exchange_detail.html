@@ -29,7 +29,7 @@
             <p>{{ exchange.cost }}</p>
             <!-- <a href="{% url 'rewards' %}" class="btn btn-primary-color">Click to Exchange for reward!</a> -->
             <div>
-                {% if exchange.cost < points %}
+                {% if valid_transaction %}
                  <form method="POST" class="form">
                      {% csrf_token %}
                      <div class="submit">
@@ -39,7 +39,7 @@
                  {% else %}
                     <p> You don't have enough points for this reward </p>
                     <a href="{% url 'rewards' %}" class="btn btn-primary-color">Return to rewards page</a>
-                    {% endif %}
+                  {% endif %}
             </div>
         </div>
         <div class="image-section">

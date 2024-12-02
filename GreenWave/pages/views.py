@@ -248,9 +248,13 @@ def exchange_detail_view(request, id):
         group_name = "Regular User"
 
     exchange_single = get_object_or_404(reward, id=id)
+    profile = user_profile.objects.get(user=request.user)
+    points = profile.points
+    if points < exchange_single.cost:
+        valid_transaction = False
+    else:
+        valid_transaction = True
     if request.method == 'POST':
-        profile = user_profile.objects.get(user=request.user)
-        points = profile.points
         if points >= exchange_single.cost:
             profile.points -= exchange_single.cost
 
@@ -271,6 +275,7 @@ def exchange_detail_view(request, id):
     context = {
         'exchange': exchange_single,
         'group_name': group_name,
+        'valid_transaction' : valid_transaction,
     }
     return render(request, "exchange_detail.html", context)
 
