@@ -98,15 +98,14 @@
             </div>
 
             <!--Past Campaigns-->
-            {% now 'MM/DD/YYYY' as todaydate %}
+            {% now "M. j,Y" as todaydate %}
             {% if group_name == 'Supervisor' %}
             <div class="rectangle-container2">
                 <h2>Past Campaigns</h2>
                 <div class="campaign-slider">
-                    {% if campaigns %}
+                    {% if pastcamp %}
                     <ul>
-                        {% for campaign in campaigns %}
-                            {% if campaign.end_date < todaydate %} <!--needs to be changed so that it pulls old campaigns-->
+                        {% for campaign in pastcamp %}
                             <li>
                                 <h3>{{ campaign.name }}</h3>
                                 <p>Start Date: {{ campaign.start_date }}</p>
@@ -119,7 +118,6 @@
                                 </p>
                                 <p>Description: {{ campaign.description }}</p>
                             </li>
-                            {% endif %}
                         {% endfor %}
                     </ul>
                     {% else %}

@@ -14,6 +14,7 @@ def home_view(request, *args, **kwargs):
     today = timezone.now().date()
     leaderboard = user_profile.objects.order_by('-points')[:10]  # Top 10 users
     campaigns = campaign.objects.filter(start_date__lt=today, end_date__gt=today)
+    pastcamp = campaign.objects.filter(end_date__lt=today)
     if request.user.groups.filter(name='Supervisor').exists():
         group_name = "Supervisor"
     else:
@@ -72,6 +73,7 @@ def home_view(request, *args, **kwargs):
     context = {
         'group_name': group_name,
         'campaigns': campaigns,
+        'pastcamp': pastcamp,
         'points1': points,
         'leaderboard': [
             {'rank': index + 1, 'username': entry.user.username, 'points': entry.points}
