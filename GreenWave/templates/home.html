@@ -106,7 +106,7 @@
                     {% if campaigns %}
                     <ul>
                         {% for campaign in campaigns %}
-                            {% if campaign.end_date < todaydate %}
+                            {% if campaign.end_date < todaydate %} <!--needs to be changed so that it pulls old campaigns-->
                             <li>
                                 <h3>{{ campaign.name }}</h3>
                                 <p>Start Date: {{ campaign.start_date }}</p>
