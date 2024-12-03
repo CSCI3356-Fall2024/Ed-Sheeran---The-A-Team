@@ -13,7 +13,14 @@
     .rectangle-container {
         background-color: #f4d6a5;
         padding: 20px;
-        width: 45%;
+        width: 35%;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .rectangle-container2 {
+        background-color: #f4d6a5;
+        padding: 20px;
+        width: 25%;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
@@ -89,6 +96,40 @@
                     <p>Still developing but it will be here.</p>
                 {% endif %}
             </div>
+
+            <!--Past Campaigns-->
+            {% now 'MM/DD/YYYY' as todaydate %}
+            {% if group_name == 'Supervisor' %}
+            <div class="rectangle-container2">
+                <h2>Past Campaigns</h2>
+                <div class="campaign-slider">
+                    {% if campaigns %}
+                    <ul>
+                        {% for campaign in campaigns %}
+                            {% if campaign.end_date < todaydate %}
+                            <li>
+                                <h3>{{ campaign.name }}</h3>
+                                <p>Start Date: {{ campaign.start_date }}</p>
+                                <p>End Date: {{ campaign.end_date}}</p>
+                                <p>Points: {{ campaign.points }}</p>
+                                <p>Available Places:
+                                    {% for place in campaign.places.all %}
+                                        {{ place.name }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </p>
+                                <p>Description: {{ campaign.description }}</p>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p>No past campaigns available.</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+        
 
             <!--Campaigns-->
             <div class="rectangle-container">
