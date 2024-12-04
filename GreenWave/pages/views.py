@@ -277,6 +277,8 @@ def exchange_detail_view(request, id):
         'exchange': exchange_single,
         'group_name': group_name,
         'valid_transaction' : valid_transaction,
+        'username' : request.user.username,
+        'email' : request.user.email,
     }
     return render(request, "exchange_detail.html", context)
 
