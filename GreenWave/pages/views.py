@@ -230,10 +230,9 @@ def exchange(request):
     else:
         group_name = "Regular User"
 
+    rewards = reward.objects.all()
+    #rewards = reward.objects.filter(start_date__lt=today, end_date__gt=today) #this is the issue! =today!!
     points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
-
-    today = timezone.now().date()
-    rewards = reward.objects.filter(start_date__lt=today, end_date__gt=today)
 
     context = {
         'group_name': group_name,
