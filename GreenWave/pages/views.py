@@ -126,7 +126,6 @@ def service_list(request):
         group_name = "Supervisor"
     else:
         group_name = "Regular User"
-    serv = service.objects.all()
     return render(request, 'service_list.html', {'services': service, 'group_name': group_name})
 
 def navbar_view(request):

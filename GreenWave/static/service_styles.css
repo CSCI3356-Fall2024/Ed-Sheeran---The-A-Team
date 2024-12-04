@@ -1,14 +1,104 @@
+/* General styling for text alignment and heading colors */
 h1 {
     text-align: center;
     margin-bottom: 40px;
     font-size: 2.5em;
     color: #e9877e;
+    font-weight: 700; /* Adding a bolder weight to make the heading stand out */
 }
 
 h2 {
     color: #98bea5;
+    font-size: 1.6em; /* Slightly increased size for better readability */
+    margin-top: 20px; /* Add spacing between sections */
+    font-weight: 600;
 }
 
+.service-detail-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+    gap: 20px; /* Adds consistent spacing between sections */
+}
+
+.text-section {
+    flex: 1;
+    background-color: #fcf4e2;
+    padding: 30px;
+    border-radius: 12px;
+    width: 600px;
+    height: auto; /* Allow dynamic height based on content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-section p {
+    font-size: 1.2em;
+    color: #312825;
+    line-height: 1.5em;
+    margin-bottom: 20px;
+}
+
+.text-section a {
+    color: #98bea5;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.text-section a:hover {
+    color: #e9877e; /* Change color on hover to create interactivity */
+}
+
+.image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #efcdd2;
+    border-radius: 12px;
+    padding: 20px;
+    width: 400px;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-section p {
+    width: 100%;
+    height: 350px;
+    border: 2px dashed #312825;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #312825;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+/* Button styling */
+.btn-primary-color {
+    background-color: #efcdd2;
+    color: #312825;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    text-decoration: none;
+    border-radius: 8px;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block;
+}
+
+.btn-primary-color:hover {
+    background-color: #e9877e;
+    color: white;
+}
+
+/* Additional styling for the service list items if used elsewhere */
 .service-container {
     display: flex;
     flex-direction: column;
@@ -23,6 +113,7 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 20px;
 }
 
 .service-item {
@@ -68,54 +159,6 @@ h2 {
     margin: 0;
 }
 
-.service-detail-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 40px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.text-section {
-    flex: 1;
-    margin-right: 20px;
+.bg-color {
     background-color: #fcf4e2;
-    padding: 20px;
-    border-radius: 12px;
-    width: 600px;
-    height: 400px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
-.image-section {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #efcdd2;
-    border-radius: 12px;
-    padding: 20px;
-    width: 400px;
-    height: auto;
-}
-
-.image-section p {
-    width: 100%;
-    height: 350px;
-    border: 1px dashed #312825;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #312825;
-    font-size: 1.5em;
-}
-
-.btn-primary-color {
-    background-color: #efcdd2;
-    color: white;
-    text-emphasis-color: black;
-  }
-  .bg-color {
-    background-color: #fcf4e2;
-  }

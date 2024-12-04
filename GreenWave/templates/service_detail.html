@@ -1,12 +1,139 @@
 
-<head>
-    <link rel="stylesheet" href="../../static/service_styles.css">
-</head>
+<!--I don't know why I can't link head style CSS but doesn't work so doing this.-->
+<style>
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    color: #e9877e;
+    font-weight: 700;
+}
+
+h2 {
+    color: #98bea5;
+    font-size: 1.6em; 
+    margin-top: 20px; 
+    font-weight: 600;
+}
+
+.service-detail-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+    gap: 20px; 
+}
+
+.text-section {
+    flex: 1;
+    background-color: #f4d6a5;
+    padding: 35px;
+    border-radius: 12px;
+    width: 600px;
+    height: auto; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-section p {
+    font-size: 1.2em;
+    color: #312825;
+    line-height: 1.5em;
+    margin-bottom: 20px;
+}
+
+.text-section a {
+    color: #98bea5;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.text-section a:hover {
+    color: #e9877e;
+}
+
+.image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #efcdd2;
+    border-radius: 12px;
+    padding: 20px;
+    width: 400px;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-section p {
+    width: 100%;
+    height: 350px;
+    border: 2px dashed #312825;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #312825;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.btn-primary-color {
+    background-color: #efcdd2;
+    color: #312825;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    text-decoration: none;
+    border-radius: 8px;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block;
+}
+
+.btn-primary-color:hover {
+    background-color: #e9877e;
+    color: white;
+}
+
+.service-box {
+    display: flex;
+    flex-direction: column;
+    background-color: #fcf4e2;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.service-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: auto;
+    gap: 10px; 
+}
+
+</style>
 
 <div>
     {% extends 'base.html' %}
     {% block title %}{{ service.name }}{% endblock %}
     {% block content %}
+    <div class="button">
+        <a href="{% url 'input' %}" class="btn btn-primary-color">Click to Input Usages!</a>
+        <a href="{{service.link}}" class="btn btn-primary-color"> More Info Here!</a>
+    </div>
     <div class="service-detail-container">
         <div class="text-section">
             <h1>{{ service.name }}</h1>
@@ -15,17 +142,14 @@
             <p>{{ service.points_per_use }}</p>
             <h2>How to Use</h2>
             <p>{{ service.how_to_use }}</p>
-            <a href={{service.link}}> More Info Here!</a>
             <h2>Why to Use</h2>
             <p>{{ service.why_to_use }}</p>
-
-            <a href="{% url 'input' %}" class="btn btn-primary-color">Click to Input Usages!</a>
-
-            
         </div>
         <div class="image-section">
             {% if service.image %}
-                <img src="{{ service.image.url }}" alt="{{ service.name }}">
+                <div class="service-image">
+                    <img src="{{ service.image.url }}" alt="{{ service.name }}">
+                </div>
             {% else %}
                 <p>No image available</p>
             {% endif %}
