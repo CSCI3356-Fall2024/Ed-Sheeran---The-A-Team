@@ -160,6 +160,60 @@
         .bg-color {
           background-color: #fcf4e2;
         }
+        .form {
+            margin: 0 auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            width: 90%;
+            background-color: #f4d6a5;
+        }
+
+        .block {
+            width: 500px;
+        }
+
+        .form-group{
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .fields{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .place-options {
+            font-weight: normal;
+            margin-bottom: -20px;
+        }
+
+        .submit-form {
+            width: 100%;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .button-color {
+            background-color: #89bea5;
+            font-weight: bold;
+            width: 50%;
+            height: 50px;
+        }
     </style>
 </head>
 
@@ -298,39 +352,43 @@
     	</div>
 
 
-      <div class="create-reward-form">
+      <div class="form">
             <h2>Create a New Reward</h2>
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="form-group">
-                    {{ form.image.label_tag }}
-                    {{ form.image }}
+                <div class="fields">
+                      <div class="form-group">
+                        {{ form.image.label_tag }}
+                        {{ form.image }}
+                      </div>
+                      <div class="form-group">
+                          {{ form.name.label_tag }}
+                          {{ form.name }}
+                      </div>
+                      <div class="form-group">
+                          {{ form.cost.label_tag }}
+                          {{ form.cost }}
+                      </div>
+                      <div class="form-group">
+                          <label>Description: </label>
+                          {{ form.desc }}
+                      </div>
+                      <div class="form-group">
+                          <label>Start Date: </label>
+                          {{ form.start_date }}
+                      </div>
+                      <div class="form-group">
+                          <label>End Date: </label>
+                          {{ form.end_date }}
+                      </div>
+                      <div class="form-group">
+                          <label>Locations: </label>
+                          {{ form.places }}
+                      </div>
                 </div>
-                <div class="form-group">
-                    {{ form.name.label_tag }}
-                    {{ form.name }}
+                <div class=""submit-form">
+                  <button type="submit" class="btn btn-primary-color">Create Reward</button>
                 </div>
-                <div class="form-group">
-                    {{ form.cost.label_tag }}
-                    {{ form.cost }}
-                </div>
-                <div class="form-group">
-                    <label>Description: </label>
-                    {{ form.desc }}
-                </div>
-                <div class="form-group">
-                    <label>Start Date: </label>
-                    {{ form.start_date }}
-                </div>
-                <div class="form-group">
-                    <label>End Date: </label>
-                    {{ form.end_date }}
-                </div>
-                <div class="form-group">
-                    <label>Locations: </label>
-                    {{ form.places }}
-                </div>
-                <button type="submit" class="btn btn-primary-color">Create Reward</button>
             </form>
         </div>
 
