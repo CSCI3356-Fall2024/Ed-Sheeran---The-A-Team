@@ -66,7 +66,7 @@ class score(models.Model):
 class transaction(models.Model): #think this works for transactions, trying to implement a model for transaction history
     user_profile = models.ForeignKey(user_profile, on_delete=models.CASCADE, related_name="trans")
     points = models.IntegerField()
-    new_total = models.IntegerField() 
+    new_total = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
     place = models.CharField(max_length=255)
     description = models.CharField(max_length=500, blank=True, null=True)

@@ -22,7 +22,16 @@
                     <label for="choice">Which campaign did you complete?</label>
                     {{ form.select }}
                     <label for="choice">Where was campaign completed?</label>
-                    {{ form.select }} <!--needs form with places-->
+                    {{ form.places }}
+                </div>
+                <div>
+                  {% if form.places.errors %}
+                    <ul class="error-list">
+                      {% for error in form.places.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                  {% endif %}
                 </div>
                 <div class="submit">
                     <button type="submit" class="button-color">Claim Points</button>
