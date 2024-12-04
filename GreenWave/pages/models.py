@@ -9,7 +9,7 @@ class user_profile(models.Model):
     year = models.IntegerField()
     major1 = models.CharField(max_length=200)
     major2 = models.CharField(max_length=200, blank = True, null = True)
-    points = models.IntegerField()
+    points = models.IntegerField(default= 0)
 
 class Place(models.Model):
     name = models.CharField(max_length=200)
