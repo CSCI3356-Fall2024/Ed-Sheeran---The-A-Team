@@ -61,8 +61,8 @@
         //email details
         var exchangeDetails = {
             reward_name: "{{ exchange.name }}",
-            user_name: "{{ user.username }}",
-            email: "{{ user.email }}",         //are username and email available?
+            user_name: "{{ username }}",
+            email: "{{ email }}",         //are username and email available?
             reward_cost: "{{ exchange.cost }}",
             reward_location: "{% for place in exchange.places.all %}{{ place.name }}{% if not forloop.last %}, {% endif %}{% endfor %}",
             redemption_date: new Date().toLocaleString()  //time
