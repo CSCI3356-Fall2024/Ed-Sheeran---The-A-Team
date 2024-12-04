@@ -71,17 +71,18 @@ class reward_form(forms.ModelForm):
 
 class points_form(forms.Form):
     select = forms.ChoiceField(choices=[])
+    places = forms.ChoiceField(choices=[])
 
     def __init__(self, *args, **kwargs):
         super(points_form, self).__init__(*args, **kwargs)
         choices = []
         today = timezone.now().date()
         for obj1 in campaign.objects.filter(start_date__lt=today, end_date__gt=today):
-            choices.append((f"{obj1.points}-{obj1.name}", obj1.name))
+            choices.append((f"{obj1.points}-{obj1.name}-campaign", obj1.name))
         for obj2 in service.objects.all():
-            choices.append((f"{obj2.points_per_use}-{obj2.name}", obj2.name))
+            choices.append((f"{obj2.points_per_use}-{obj2.name}-service", obj2.name))
         self.fields['select'].choices = choices
-
+        self.fields['places'].choices = [(place.name, place.name) for place in Place.objects.all()]
 #use this for leaderboard
 class score_form(forms.ModelForm):
     class Meta:
