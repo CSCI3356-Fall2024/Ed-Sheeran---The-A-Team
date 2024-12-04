@@ -265,7 +265,7 @@ def exchange_detail_view(request, id):
                 user_profile=profile, #I think this works but mine never did without so idk, someone should test sorry
                 points=-exchange_single.cost,
                 new_total = profile.points,
-                place=exchange_single.name,  #havent thought this through yet
+                place=f"Reward emailed",
                 description=f"Exchanged for {exchange_single.name} reward"
             )
             trans.save()
@@ -297,7 +297,7 @@ def input(request):
                 if not selected_campaign.places.filter(name=place).exists():
                     form.add_error('places', 'The selected place is not valid for this campaign.')
                     return render(request, 'input.html', {'form': form, 'points': profile.points})
-                    
+
             select_points = int(select_str)
             points = profile.points
             updated_points = points + select_points
@@ -308,7 +308,7 @@ def input(request):
                 user_profile=profile, #I think this works but mine never did without so idk, someone should test sorry
                 points=select_points,
                 new_total = profile.points,
-                place=place,  #this needs to check that place is valid
+                place=place,
                 description=f"Completed {name} campaign"
             )
             trans.save()
