@@ -69,7 +69,7 @@
         };
 
         //send email part
-        emailjs.send("reward_redeem", "reward_redeem", exchangeDetails)
+        emailjs.send("reward_redeem", "template_kiyfi7g", exchangeDetails)
             .then(function(response) {
                 console.log('Email sent successfully:', response);
                 alert("You have successfully redeemed your reward! Check your email for details.");
