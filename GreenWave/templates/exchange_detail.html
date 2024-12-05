@@ -9,7 +9,14 @@
 
 <head>
     <link rel="stylesheet" href="../../static/service_styles.css">
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script> <!--email service (EmailJS)-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script> <!--email service (EmailJS)-->
+    <script type="text/javascript">
+        (function(){
+           emailjs.init({
+             publicKey: "kc8ypmJaKTu9iXe1j",
+           });
+        })();
+     </script>
 </head>
 
 <div>
@@ -31,14 +38,16 @@
             <!-- <a href="{% url 'rewards' %}" class="btn btn-primary-color">Click to Exchange for reward!</a> -->
             <div>
                 {% if valid_transaction %}
-                 <form method="POST" class="form"id="redeem-form">
+                 <form method="POST" class="form" id="reward_redeem_template">
                      {% csrf_token %}
                      <div class="submit">
                          <button type="submit" class="btn btn-primary-color">Click to Exchange for reward!</button>
                      </div>
                  </form>
                  {% else %}
-                    <p> You don't have enough points for this reward </p>
+                    {% if not group_name == 'Supervisor' %}
+                        <p> You don't have enough points for this reward </p>
+                    {% endif %}
                     <a href="{% url 'rewards' %}" class="btn btn-primary-color">Return to rewards page</a>
                   {% endif %}
             </div>
@@ -51,32 +60,28 @@
             {% endif %}
         </div>
     </div>
+    <script type="text/javascript">
+        document.getElementById('reward_redeem_template').addEventListener('submit', function(event) {
+            //email details
+            var exchangeDetails = {
+                reward_name: "{{ exchange.name }}",
+                user_name: "{{ username }}",
+                email: "{{ email }}",         //are username and email available?
+                reward_cost: "{{ exchange.cost }}",
+                reward_location: "{% for place in exchange.places.all %}{{ place.name }}{% if not forloop.last %}, {% endif %}{% endfor %}",
+                redemption_date: new Date().toLocaleString()  //time
+            };
+    
+            //send email part
+            emailjs.send("reward_redeem", "redeem_template_id", exchangeDetails).then(
+                (response) => {
+                    console.log('SUCCESS!', response.status, response.text);
+                },
+                (error) => {
+                    console.log('FAILED...', error);
+                },
+            );
+        });
+    </script>
     {% endblock %}
 </div>
-
-<script type="text/javascript">
-    emailjs.init("kc8ypmJaKTu9iXe1j"); //emailjs pub key
-
-    document.getElementById('redeem-form').addEventListener('submit', function(event) {
-        //email details
-        var exchangeDetails = {
-            reward_name: "{{ exchange.name }}",
-            user_name: "{{ username }}",
-            email: "{{ email }}",         //are username and email available?
-            reward_cost: "{{ exchange.cost }}",
-            reward_location: "{% for place in exchange.places.all %}{{ place.name }}{% if not forloop.last %}, {% endif %}{% endfor %}",
-            redemption_date: new Date().toLocaleString()  //time
-        };
-
-        //send email part
-        emailjs.send("reward_redeem", "template_kiyfi7g", exchangeDetails)
-            .then(function(response) {
-                console.log('Email sent successfully:', response);
-                alert("You have successfully redeemed your reward! Check your email for details.");
-            })
-            .catch(function(error) {
-                console.error('Error sending email:', error);
-                alert("There was an error sending the email. Please try again.");
-            });
-    });
-</script>

@@ -160,6 +160,60 @@
         .bg-color {
           background-color: #fcf4e2;
         }
+        .form {
+            margin: 0 auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            width: 90%;
+            background-color: #f4d6a5;
+        }
+
+        .block {
+            width: 500px;
+        }
+
+        .form-group{
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .fields{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .place-options {
+            font-weight: normal;
+            margin-bottom: -20px;
+        }
+
+        .submit-form {
+            width: 100%;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .button-color {
+            background-color: #89bea5;
+            font-weight: bold;
+            width: 50%;
+            height: 50px;
+        }
     </style>
 </head>
 
@@ -212,44 +266,6 @@
 
           </div>
 
-          <!--History
-          <div class="transaction-history">
-              <h3>TRANSACTION HISTORY</h3>
-              <div class="transaction-history-slider">
-                  <div class="transaction-date">OCTOBER 2024</div>
-                  <div class="transaction-item">
-                      <span class="transaction-date-info">10/02/24</span>
-                      <span class="transaction-initiative">Green2Go</span>
-                      <span class="transaction-points">+5 <span class="total-points">250 points</span></span>
-                      <span class="transaction-location">Carney</span>
-                  </div>
-                  <div class="transaction-item">
-                      <span class="transaction-date-info">10/02/24</span>
-                      <span class="transaction-initiative">Reward Redeemed—Free Cookie</span>
-                      <span class="transaction-points">-100 <span class="total-points">245 points</span></span>
-                      <span class="transaction-location">Lower</span>
-                  </div>
-
-                  <div class="transaction-date">SEPTEMBER 2024</div>
-                  <div class="transaction-item">
-                      <span class="transaction-date-info">09/30/24</span>
-                      <span class="transaction-initiative">Recycle Bin</span>
-                      <span class="transaction-points">+10 <span class="total-points">345 points</span></span>
-                      <span class="transaction-location">Eagles Nest</span>
-                  </div>
-
-                  <div class="transaction-date">AUGUST 2024</div>
-                  <div class="transaction-item">
-                      <span class="transaction-date-info">08/15/24</span>
-                      <span class="transaction-initiative">Green2Go</span>
-                      <span class="transaction-points">+10 <span class="total-points">335 points</span></span>
-                      <span class="transaction-location">Hillside Cafe</span>
-                  </div>
-              </div>
-          </div>-->
-
-
-
 
           <!--I believe this works except we need to add services and test, I just can't access input page so can't get points
           We also need to add a transaction every time a service is redeemed / inputted-->
@@ -288,7 +304,7 @@
   {% if group_name == 'Supervisor' %}
     <div class="rewards-container">
       <h1 class="rewards-header">REWARDS DASHBOARD</h1>
-      <div class="available-rewards">
+      <!-- <div class="available-rewards">
             <h2>Available Rewards</h2>
             <ul>
                 {% for reward in all_rewards %}
@@ -308,40 +324,71 @@
                     <p>No rewards available yet.</p>
                 {% endfor %}
             </ul>
-      </div>
-      <div class="create-reward-form">
+      </div> -->
+
+      <div class="service-container">
+        <h2>Available Rewards</h2>
+    		<ul class="services-list">
+    			{% for reward in all_rewards %}
+    			<li class="service-item">
+    				<a href="{% url 'exchange_detail' reward.id %}" class="service-box">  <!-- Would like to get rid of underlines, add shadow when hovered over -->
+    					<div class="service-box">
+    						<div class="service-image">
+    							{% if reward.image %}
+    								<img src="{{ reward.image.url }}" alt="{{ reward.name }}">
+    							{% else %}
+    								<p>No image available</p>
+    							{% endif %}
+    						</div>
+    						<div class="service-content">
+    							<p class="service-name">{{ reward.name }}</p>
+    							<p class="short-description">{{ reward.desc }}</p>
+    						</div>
+    					</div>
+    				</a>
+    			</li>
+    			{% endfor %}
+    		</ul>
+    	</div>
+
+
+      <div class="form">
             <h2>Create a New Reward</h2>
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="form-group">
-                    {{ form.image.label_tag }}
-                    {{ form.image }}
+                <div class="fields">
+                      <div class="form-group">
+                        {{ form.image.label_tag }}
+                        {{ form.image }}
+                      </div>
+                      <div class="form-group">
+                          {{ form.name.label_tag }}
+                          {{ form.name }}
+                      </div>
+                      <div class="form-group">
+                          {{ form.cost.label_tag }}
+                          {{ form.cost }}
+                      </div>
+                      <div class="form-group">
+                          <label>Description: </label>
+                          {{ form.desc }}
+                      </div>
+                      <div class="form-group">
+                          <label>Start Date: </label>
+                          {{ form.start_date }}
+                      </div>
+                      <div class="form-group">
+                          <label>End Date: </label>
+                          {{ form.end_date }}
+                      </div>
+                      <div class="form-group">
+                          <label>Locations: </label>
+                          {{ form.places }}
+                      </div>
                 </div>
-                <div class="form-group">
-                    {{ form.name.label_tag }}
-                    {{ form.name }}
+                <div class=""submit-form">
+                  <button type="submit" class="btn btn-primary-color">Create Reward</button>
                 </div>
-                <div class="form-group">
-                    {{ form.cost.label_tag }}
-                    {{ form.cost }}
-                </div>
-                <div class="form-group">
-                    <label>Description: </label>
-                    {{ form.desc }}
-                </div>
-                <div class="form-group">
-                    <label>Start Date: </label>
-                    {{ form.start_date }}
-                </div>
-                <div class="form-group">
-                    <label>End Date: </label>
-                    {{ form.end_date }}
-                </div>
-                <div class="form-group">
-                    <label>Locations: </label>
-                    {{ form.places }}
-                </div>
-                <button type="submit" class="btn btn-primary-color">Create Reward</button>
             </form>
         </div>
 

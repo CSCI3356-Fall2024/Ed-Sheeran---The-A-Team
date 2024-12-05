@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from pages.views import logout_view
+from pages.views import cancelled_view
 from pages.views import home_view
 from pages.views import campaign_view
 from pages.views import add_score, leaderboard_view
@@ -34,6 +35,7 @@ urlpatterns = [
 
     path('logout/', logout_view, name = 'logout'),
     path('', home_view, name= 'home'),
+    path('accounts/3rdparty/login/cancelled/', cancelled_view, name='account_login_cancelled'),
     path('accounts/', include('allauth.urls')),
     path("accounts/profile/", profile_view, name="profile"),
     path("service/<int:id>//", service_detail_view, name="service_detail"),
