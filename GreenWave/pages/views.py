@@ -219,11 +219,13 @@ def rewards(request):
         group_name = "Regular User"
         points = user_profile.objects.filter(user=request.user).values_list("points", flat=True).first() or 0
         transactions = transaction.objects.filter(user_profile__user=request.user).order_by('-date')
+        percentage = ((points / 1000) * 100)
         context = {
             'group_name': group_name,
             'next_level_threshold': 1000,
             "points" : points,
             "transactions" : transactions,
+            "percentage" : percentage
         }
     # New, trying to make Bar
     return render(request, "rewards.html", context)

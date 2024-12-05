@@ -1,4 +1,8 @@
 <head>
+    {% extends 'base.html' %}
+    {% load static %}
+    {% block content %}
+    {% if group_name == 'Regular User' %}
     <title>Green Rewards</title>
     <link rel="stylesheet" href="../../static/service_styles.css">
 
@@ -29,7 +33,7 @@
             height: 100%;
             border-radius: 10px;
             transition: width 0.5s ease-in-out;
-            width: 35%;
+            width:  {{ percentage }}%; 
         }
 
         .tick-marks {
@@ -219,10 +223,6 @@
 
 
 <div>
-    {% extends 'base.html' %}
-    {% load static %}
-    {% block content %}
-    {% if group_name == 'Regular User' %}
       <div class="rewards-container">
           <h1 class="rewards-header">MY REWARDS</h1>
 
