@@ -9,7 +9,7 @@ services:
     plan: free
     name: mysite
     runtime: python
-    buildCommand: "./build.sh"
+    buildCommand: "GreenWave/build.sh"
     startCommand: "cd GreenWave && python3 -m gunicorn GreenWave.asgi -k uvicorn.workers.UvicornWorker"
     envVars:
       - key: DATABASE_URL
